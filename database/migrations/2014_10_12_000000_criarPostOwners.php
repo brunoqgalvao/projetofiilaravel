@@ -13,7 +13,7 @@ class CriarPostOwners extends Migration
      */
     public function up()
     {
-        Schema::create('postOwners', function(Blueprint $table){
+        Schema::create('post_owners', function(Blueprint $table){
             $table->increments('id');
         });
     }
@@ -25,7 +25,7 @@ class CriarPostOwners extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('postOwners');
+        Schema::dropIfExists('post_owners');
 
     }
 }

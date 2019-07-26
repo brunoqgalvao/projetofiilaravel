@@ -1,14 +1,21 @@
+<?php 
+//TODO: gambiarra php
+
+$content = str_replace('"', "", $post->content);
+$user = $post->postOwner->user;
+?>
+
 <div class="col-md-6 col-sm-8 mx-auto my-2 py-2" style="background:white">
   <div class="row">
     <div class="col-sm-1 d-flex align-middle">
       <a href="#" class=' align-self-center'>
-        <img src="./assets/{{$post['user']['user_avatar']}}" width="40" height="40" alt="...">
+        <img src="./assets/{{$user->user_avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
-    <div class="col-sm-8 ml-2 mt-2">
+    <div class="col-sm-8 mt-2">
       <a href="#" class="anchor-username">
-        <h4 class="media-heading mb-0">{{$post['user']['name']}}</h4>
-        <small class='text-sm-left'>{{$post['user']['credentials']}}</small>
+        <h4 class="media-heading mb-0">{{$user->name}}</h4>
+        <small class='text-sm-left'>{{$user->credentials}}</small>
       </a>
     </div>
   </div>
@@ -16,15 +23,17 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-11">
-      {{$post['conteudo']}}
+      {!!$content!!}
     </div>
+    @if($post->image_url)
     <div class="col-sm-1">
       </div>
     <div class='col-sm-11'>
       <div class='bg-container' style="height:200px">
-        <div class='bg  rounded border my-2' style="background-image:url('assets/itau_banner.jpg')"></div>
+        <div class='bg  rounded border my-2' style="background-image:url('assets/{{$post->image_url}}')"></div>
       </div>
     </div>
+    @endif
   </section>
     <div class='row'>
       <div class="col-sm-1">

@@ -21,9 +21,9 @@ class CriarComments extends Migration
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('comment_id');
-            // $table->foreign('post_id')->references('id')->on('Posts')->notnull();
-            // $table->foreign('user_id')->references('id')->on('Users')->notnull();
-            // $table->foreign('comment_id')->references('id')->on('Comments');
+            $table->foreign('post_id')->references('id')->on('Posts')->notnull();
+            $table->foreign('user_id')->references('id')->on('Users')->notnull();
+            $table->foreign('comment_id')->references('id')->on('Comments');
         });
     }
 

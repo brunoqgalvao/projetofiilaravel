@@ -18,8 +18,8 @@ class CriarFunds extends Migration
             $table->string('name');
             $table->string('perfil');
             $table->timestamps();
-            $table->unsignedBigInteger('postOwner_id');
-            // $table->foreign('postOwner_id')->references('id')->on('postOwners')->notnull();
+            $table->unsignedInteger('post_owner_id');
+            $table->foreign('post_owner_id')->references('id')->on('post_owners')->notnull();
         });
     }
 

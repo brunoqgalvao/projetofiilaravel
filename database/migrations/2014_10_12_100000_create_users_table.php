@@ -18,10 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('credentials')->default("");
+            $table->string('user_avatar')->default("");
             $table->rememberToken();
             $table->timestamps();
-            $table->unsignedInteger('postOwner_id');
-            $table->foreign('postOwner_id')->references('id')->on('postOwners');
+            $table->unsignedInteger('post_owner_id');
+            $table->foreign('post_owner_id')->references('id')->on('post_owners');
         });
     }
 

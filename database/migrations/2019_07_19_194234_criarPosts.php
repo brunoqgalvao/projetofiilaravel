@@ -15,10 +15,15 @@ class CriarPosts extends Migration
     {
         Schema::create('posts', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('conteudo');
+            $table->string('content');
+            $table->string('title')->default("  ");
+            $table->string('image_url')->default("  ");
+            $table->string('likes_total')->default('0');
+            $table->string('comments_total')->default('0');
+            $table->string('shares_total')->default('0');
             $table->timestamps();
-            $table->unsignedBigInteger('postOwner_id');
-            // $table->foreign('postOwner_id')->references('id')->on('postOwners');
+            $table->unsignedInteger('post_owner_id');
+            $table->foreign('post_owner_id')->references('id')->on('post_owners');
         });
     }
 
