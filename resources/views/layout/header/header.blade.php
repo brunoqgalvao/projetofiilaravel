@@ -2,6 +2,11 @@
 <!-- FIXME: Mobile não está resolvido no header - vai ser CSS? -->
 
 @if (Auth::guest())
+ <?php
+   // Get Login or Register Modal Status on Load
+   $loginOpen = isset($_GET['login'])? true:false;
+   $registerOpen = isset($_GET['register'])? true:false;
+ ?>
 <header>
   <div class='logo-container'>
     <a href="/" class="logo-container-link"></a>
@@ -40,7 +45,7 @@
   <div class='header-perfil-container my-2'>
     <div class="avatar-container">
       <a class="avatar-link" type="button" data-target='#modalNavigation' data-toggle='modal' id="perfil-link">
-        <img src="assets/empty-avatar.png" alt="avatar" class="avatar-img">
+        <img src="{{ asset(Auth::user()->user_avatar) }}" alt="assets/empty-avatar.png" class="avatar-img">
       </a>
     </div>
   </div>

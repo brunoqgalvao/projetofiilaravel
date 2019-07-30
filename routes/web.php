@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('landing.landing');
-});
 
 Auth::routes();
 
-
-
 // react route
+Route::get('/', 'landingController@landing')->name('Bem-vindo');
+Route::get('/login', 'landingController@login')->name('login');
+Route::get('/register', 'landingController@register')->name('register');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
 
 Route::post('/post/','PostController@createPost');
 Route::get('/post','PostController@getPost');

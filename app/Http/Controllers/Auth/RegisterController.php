@@ -65,10 +65,18 @@ class RegisterController extends Controller
     {
         $owner = PostOwner::create();
 
+        $nomeOriginal = $data['user_avatar']->getClientOriginalName();
+
+        $avatar_path = '/storage/img/'.$nomeOriginal;
+
+        $save = $data['user_avatar']->storeAs('public/img/',$nomeOriginal);
+
         return $owner->user()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'user_level' => 1,
+            'user_avatar' => $avatar_path
         ]);
     }
 }

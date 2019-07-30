@@ -14,4 +14,4 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.copy('./resources/views/feed/feedapp/build/static/js', './public/static/js', false);
+// mix.copy('./resources/views/feed/feedapp/build/static/js', './public/static/js', false);
