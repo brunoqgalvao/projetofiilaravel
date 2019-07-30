@@ -3,7 +3,6 @@
 
 //TODO: Solve this
 $user = Auth::user();
-$user->user_avatar = 'itau.jpg';
 $user->credentials = 'Banco de investimentos';
 ?>
 

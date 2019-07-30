@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\PostOwner;
+
 
 
 class PostController extends Controller {
@@ -35,8 +37,8 @@ class PostController extends Controller {
     
     public function getPost(Request $request) {
         if($request->isMethod('get')){
-            $posts = Post::all();
-            return view('home', ['posts'=>$posts]);
+            $posts = Post::with('postOwner')->get();
+            return view('home', ['posts' => $posts]);
         }
     }
 }
