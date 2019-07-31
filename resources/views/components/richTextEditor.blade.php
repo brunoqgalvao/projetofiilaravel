@@ -138,3 +138,20 @@ function selectLocalImage() {
 //     ['clean']                                         // remove formatting button
 // ];
 </script>
+
+<script>
+
+quill.on('text-change', function(delta, oldDelta, source) {
+  if (source == 'api') {
+    console.log("An API call triggered this change.");
+  } else if (source == 'user') {
+    editorFunctions(oldDelta);
+    }
+});
+
+function editorFunctions(delta) {
+  console.log(delta);
+}
+
+
+</script>

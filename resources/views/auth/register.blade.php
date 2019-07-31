@@ -53,7 +53,7 @@
       </div>
       <div class="form-group">
         <input type="submit" class="btn-submit" value="Cadastrar" />
-      </div>
+    </div>
     </div>
     <div class="form-group">
       <a href="#" id='login-forget-pwd' data-toggle="modal" data-dismiss="modal" data-target="#modalLogin">Já tem cadastro?</a>

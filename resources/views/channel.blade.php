@@ -1,5 +1,6 @@
 @extends('layout.template')
 <?php
+
 //TODO: Solve this
 $user = Auth::user();
 ?>
