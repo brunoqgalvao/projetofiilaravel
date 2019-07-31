@@ -15,7 +15,8 @@ class CriarPosts extends Migration
     {
         Schema::create('posts', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('content');
+            $table->string('content',10000);
+            $table->string('tags',10000);
             $table->string('title')->default("  ");
             $table->string('image_url')->default("  ");
             $table->string('likes_total')->default('0');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\PostOwner;
+use App\Room;
+
 
 
 class PostController extends Controller {
@@ -24,9 +27,13 @@ class PostController extends Controller {
         if ($request->isMethod('post')) {
             $user = Auth::user();
             $owner = $user->postOwner;
-            $owner->posts()->create([
-                "content"=>$request->postContent
+            $post = $owner->posts()->create([
+                "content"=>$request->postContent,
             ]);
+            // find or fail room ids;
+            $room = Room::firstOrCreate(['name' =>$request->tag]);
+
+            $post->rooms()->attach($room->id);
             //TODO: this view has to be the same view the person was in (last url)
             return redirect('/post');
         } else 
@@ -35,8 +42,8 @@ class PostController extends Controller {
     
     public function getPost(Request $request) {
         if($request->isMethod('get')){
-            $posts = Post::all();
-            return view('home', ['posts'=>$posts]);
+            $posts = Post::with('postOwner')->get();
+            return view('home', ['posts' => $posts]);
         }
     }
 }

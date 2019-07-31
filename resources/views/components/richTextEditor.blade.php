@@ -3,7 +3,7 @@
 
 <div class="col-sm-1 pt-1">
   <a href="#">
-    <img  src="./assets/{{$user['user_avatar']}}" width="32" height="32" alt="...">
+    <img  src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
   </a>
 </div>
 <div class='col-sm-10 mx-auto'>
@@ -61,6 +61,63 @@ function formSubmit() {
   return true;
 };
 
+function selectLocalImage() {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'file');
+      input.click();
+
+      // Listen upload local image and save to server
+      input.onchange = () => {
+        const file = input.files[0];
+
+        // file type is only image.
+        if (/^image\//.test(file.type)) {
+          saveToServer(file);
+        } else {
+          console.warn('You could only upload images.');
+        }
+      };
+    }
+
+    /**
+     * Step2. save to server
+     *
+     * @param {File} file
+     */
+    function saveToServer(file) {
+      const data = new FormData();
+      const request = new XMLHttpRequest();
+      data.append('image', file);
+      console.log(data);
+      token = document.querySelector('meta[name="csrf-token"]').content;
+      request.open('POST', 'http://localhost:8000/api/upload/image', true);
+      request.setRequestHeader('X-CSRF-TOKEN', token);
+      request.onload = () => {
+        if (request.status === 200) {
+          // this is callback data: url
+          const url = JSON.parse(request.responseText).data;
+          insertToEditor(url);
+        }
+      };
+      request.send(data);
+    }
+
+    /**
+     * Step3. insert image url to rich editor.
+     *
+     * @param {string} url
+     */
+    function insertToEditor(url) {
+      // push image url to rich editor.
+      const range = quill.getSelection();
+      quill.insertEmbed(range.index, 'image', `http://localhost:8000${url}`);
+    }
+
+    // quill editor add image handler
+    quill.getModule('toolbar').addHandler('image', () => {
+      selectLocalImage();
+    });
+
   // var toolbarOptions = [
 //     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
 //     ['blockquote', 'code-block'],
@@ -80,4 +137,21 @@ function formSubmit() {
 
 //     ['clean']                                         // remove formatting button
 // ];
+</script>
+
+<script>
+
+quill.on('text-change', function(delta, oldDelta, source) {
+  if (source == 'api') {
+    console.log("An API call triggered this change.");
+  } else if (source == 'user') {
+    editorFunctions(oldDelta);
+    }
+});
+
+function editorFunctions(delta) {
+  console.log(delta);
+}
+
+
 </script>

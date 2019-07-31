@@ -2,14 +2,24 @@
 //TODO: gambiarra php
 
 $content = str_replace('"', "", $post->content);
+$content = str_replace('\\', "", $content);
 $user = $post->postOwner->user;
 ?>
+
+<style>
+
+.post-content > p > img {
+  max-width:90%;
+  max-height:90%;
+}
+
+</style>
 
 <div class="col-md-6 col-sm-8 mx-auto my-2 py-2" style="background:white">
   <div class="row">
     <div class="col-sm-1 d-flex align-middle">
       <a href="#" class=' align-self-center'>
-        <img src="./assets/{{$user->user_avatar}}" width="32" height="32" alt="...">
+        <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
     <div class="col-sm-8 mt-2">
@@ -22,18 +32,9 @@ $user = $post->postOwner->user;
   <section class='row'>
     <div class="col-sm-1">
     </div>
-    <div class="col-sm-11">
+    <div class="col-sm-11 post-content">
       {!!$content!!}
     </div>
-    @if($post->image_url)
-    <div class="col-sm-1">
-      </div>
-    <div class='col-sm-11'>
-      <div class='bg-container' style="height:200px">
-        <div class='bg  rounded border my-2' style="background-image:url('assets/{{$post->image_url}}')"></div>
-      </div>
-    </div>
-    @endif
   </section>
     <div class='row'>
       <div class="col-sm-1">

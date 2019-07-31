@@ -13,4 +13,8 @@ class Post extends Model
     {
         return $this->belongsTo('App\PostOwner');
     }
+    public function rooms()
+    {
+        return $this->belongsToMany('App\Room', 'posts_in_rooms');
+    }
 }

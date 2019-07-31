@@ -6,7 +6,7 @@
     </a>
   </div>
   <hr/>
-  <form method="POST" action="{{ route('register') }}">
+  <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div id="cadastro-nome">
       <div class="form-group">
@@ -32,6 +32,12 @@
             </span>
         @endif
       </div>
+      <div class="form-group row">
+        <label for="user_avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+        <div class="col-md-6">
+            <input id="user_avatar" type="file" class="form-control" name="user_avatar" accept="image/png, image/jpeg" required>
+        </div>
+      </div>
       <div class="form-group">
         Senha:
         <input id="password" type="password" class="form-control" name="password" required />
@@ -47,7 +53,7 @@
       </div>
       <div class="form-group">
         <input type="submit" class="btn-submit" value="Cadastrar" />
-      </div>
+    </div>
     </div>
     <div class="form-group">
       <a href="#" id='login-forget-pwd' data-toggle="modal" data-dismiss="modal" data-target="#modalLogin">Já tem cadastro?</a>

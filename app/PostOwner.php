@@ -21,4 +21,10 @@ class PostOwner extends Model
     {
         return $this->hasMany('App\Post');
     }
+    public function getNameAttribute(){
+        return $this->user->name;
+    }
+    public function getUserAvatarAttribute(){
+        return $this->user->user_avatar;
+    }
 }
