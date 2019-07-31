@@ -4,6 +4,7 @@
 $content = str_replace('"', "", $post->content);
 $content = str_replace('\\', "", $content);
 $user = $post->postOwner->user;
+$postId = $post->id;
 ?>
 
 <style>
@@ -42,7 +43,7 @@ $user = $post->postOwner->user;
       <div class='col-sm-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
               <li class='mx-3 my-2'>
-                  <a href="#" onclick="loadNWriteComments">
+                  <a href="#" onclick="loadNWriteComments(event, {{$post->id}})">
                     <i class="fa fa-comment"  style="color:var(--verde)"></i> 
                     {{$post['comments_total']}}
                   </a>
@@ -62,24 +63,60 @@ $user = $post->postOwner->user;
             </ul>
       </div>
     </div>
-    <section class='row'>
-        <div class="col-sm-1">
-        </div>
-        <div class="col-sm-11" id="showComment">
-        </div>
+    <section class='row' id="postComments-{{$post->id}}">
+    </section>
 </div>
 </div>
 <script>
-  function loadNWriteComments(event) {
+
+  // load comentarios;
+  function loadNWriteComments(event, id) {
     event.preventDefault();
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("showComment").innerHTML = this.responseText;
-      }
+    // Check if comments for this post have alredy been loaded
+    commentSection = document.getElementById("postComments-"+id);
+    console.log(commentSection.getAttribute('showing')===true);
+    if(commentSection.getAttribute('showing')){
+      excludeCommentSection(commentSection);
+      commentSection.removeAttribute('showing')
+    } else {
+      console.log('here');
+      $.get("/api/comment/teste", function(data,status) {
+        writeCommentSection(data.comments,commentSection);
+        commentSection.setAttribute('showing',true)
+      })
     }
-  xhttp.open("GET", "", true);
-  xhttp.send();
+    // If they have, 
+
   }
-  
+
+  function excludeCommentSection(id) {
+    //empty comments;
+    commentSection.innerHTML="";
+  }
+
+  // abre ou fecha a seção de comentarios;
+  function writeCommentSection(comments,commentSection) {
+    comments.forEach(comment => {
+        var commentDiv = buildCommentDiv(comment);
+        commentSection.appendChild(commentDiv);
+      });
+  }
+
+
+  // constroi uma div de comentario a partir do comment vindo do banco;
+  function buildCommentDiv(comment){
+    commentDiv = document.createElement('div');
+    commentDiv.setAttribute("id", comment.id);
+    commentDiv.setAttribute("class", "col-sm-12");
+    commentDiv.innerHTML = `
+      <div class="col-sm-1">
+      </div>
+      <div class="col-sm-11" id="showComment{{$postId}}">
+        <div class='mt-2'>${comment.user_name}</div>
+        <p>${comment.text}</p>
+      </div>
+    `
+    return commentDiv;
+  }
+
 </script>
