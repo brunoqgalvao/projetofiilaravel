@@ -41,7 +41,7 @@ $user = $post->postOwner->user;
       <div class='col-sm-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
               <li class='mx-3 my-2'>
-                  <a href="#">
+                  <a href="#" onclick="loadNWriteComments()">
                     <i class="fa fa-comment"  style="color:var(--verde)"></i> 
                     {{$post['comments_total']}}
                   </a>
@@ -61,5 +61,23 @@ $user = $post->postOwner->user;
             </ul>
       </div>
     </div>
+    <section class='row'>
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-11" id="showComment">
+        </div>
 </div>
 </div>
+<script>
+  function loadNWriteComments() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("showComment").innerHTML = this.responseText;
+      }
+    }
+  xhttp.open("GET", "", true);
+  xhttp.send();
+  }
+  
+</script>

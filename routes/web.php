@@ -22,5 +22,5 @@ Auth::routes();
 // react route
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/post/','PostController@createPost');
+Route::post('/post','PostController@createPost');
 Route::get('/post','PostController@getPost');
