@@ -10,4 +10,5 @@ $user = Auth::user();
   @foreach($posts as $post)
     @include('feed.post', ['post' => $post])
   @endforeach
+  @include('feed.roomDisplay')
 @endsection

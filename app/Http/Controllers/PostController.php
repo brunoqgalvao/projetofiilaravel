@@ -26,18 +26,21 @@ class PostController extends Controller {
     public function createPost(Request $request) {
         if ($request->isMethod('post')) {
             $user = Auth::user();
+            // adiciona a tag username;
+            $request->request->add(['tag' => $user->name]);
+            // pega o id de postowner do user;
             $owner = $user->postOwner;
+            // cria um post atrelado a esse post owner;
             $post = $owner->posts()->create([
                 "content"=>$request->postContent,
             ]);
-            // find or fail room ids;
+            // cria ou encontra rooms a partir das tags e adicona no post
             $room = Room::firstOrCreate(['name' =>$request->tag]);
-
             $post->rooms()->attach($room->id);
             //TODO: this view has to be the same view the person was in (last url)
-            return redirect('/post');
+            return redirect('/feed');
         } else 
-            return redirect('/post');
+            return redirect('/feed');
     }
     
     public function getPost(Request $request) {

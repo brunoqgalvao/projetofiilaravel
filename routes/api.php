@@ -23,6 +23,9 @@ Route::post('/upload/image', 'Api\UploadController@uploadImage');
 // rota teste
 Route::get('/comment/teste', 'Api\CommentController@teste');
 
+Route::get('/rooms', 'Api\RoomController@getAllRooms');
+
+
 Route::get('/usuarios','api\UsuariosController@pegarTodos');
 Route::get('/usuarios/{id}','api\UsuariosController@pegarUm');
 Route::post('/usuarios','api\UsuariosController@criaUm');

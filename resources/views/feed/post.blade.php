@@ -19,12 +19,12 @@ $postId = $post->id;
 <div class="col-md-6 col-sm-8 mx-auto my-2 py-2" style="background:white">
   <div class="row">
     <div class="col-sm-1 d-flex align-middle">
-      <a href="#" class=' align-self-center'>
+    <a href="/feed/{{$user->name}}" class=' align-self-center'>
         <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
     <div class="col-sm-8 mt-2">
-      <a href="#" class="anchor-username">
+      <a href="/feed/{{$user->name}}" class="anchor-username">
         <h4 class="media-heading mb-0">{{$user->name}}</h4>
         <small class='text-sm-left'>{{$user->credentials}}</small>
       </a>
