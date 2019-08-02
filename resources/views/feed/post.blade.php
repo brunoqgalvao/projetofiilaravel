@@ -109,12 +109,22 @@ $postId = $post->id;
     commentDiv.setAttribute("id", comment.id);
     commentDiv.setAttribute("class", "col-sm-12");
     commentDiv.innerHTML = `
-      <div class="col-sm-1">
+    <div class="col-sm-1">
       </div>
       <div class="col-sm-11" id="showComment{{$postId}}">
-        <div class='mt-2'>${comment.user_name}</div>
+        <div class="col-sm-1 d-flex align-middle">
+            <a href="#" class=' align-self-center'>
+                <img src="" width="32" height="32" alt="...">
+            </a>
+        </div>
+        <div class="col-sm-8 mt-2">
+        <a href="#" class="anchor-username">
+                ${comment.user_name}
+        </a>
         <p>${comment.text}</p>
-      </div>
+        </div>
+    </div>
+
     `
     return commentDiv;
   }
