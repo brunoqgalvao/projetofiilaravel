@@ -64,8 +64,8 @@ $postId = $post->id;
       </div>
     </div>
     <section class='row' id="postComments-{{$post->id}}">
-    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST'>
-        <div class="form-group col-sm-12">
+    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10" >
+        <div class="form-group col-sm-12 justify-content d-flex">
           <label for="commentBody">Comment</label>
           <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
           <input type='submit' value='enviar'>
@@ -117,7 +117,7 @@ $postId = $post->id;
     commentDiv.innerHTML = `
     <div class="col-sm-1">
       </div>
-      <div class="col-sm-11" id="showComment{{$postId}}">
+      <div class="col-sm-11 d-flex" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
             <a href="#" class=' align-self-center'>
                 <img src="" width="32" height="32" alt="...">
