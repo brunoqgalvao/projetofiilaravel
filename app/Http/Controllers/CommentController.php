@@ -17,13 +17,16 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->body = $request->commentBody;
         $comment->user_id = Auth::id();
-        $post->comments()->save($comment); 
+        $post['comments_total'] += 1;
+        $post->save();
+        $post->comments()->save($comment);
+
         return redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function getComments(Request $request, $postId){
         $post = Post::findOrFail($postId);
-        $comments = $post->comments()->with('User')->get();
+        $comments = $post->comments()->with('User')->orderBy('created_at', 'DESC')->get();
         return response()->json($comments);
     }
 }

@@ -14,6 +14,10 @@ $postId = $post->id;
   max-height:90%;
 }
 
+.hidden {
+  display:none;
+}
+
 </style>
 
 <div class="col-md-6 col-sm-8 mx-auto my-2 py-2" style="background:white">
@@ -63,15 +67,15 @@ $postId = $post->id;
             </ul>
       </div>
     </div>
+    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10 hidden" >
+        @csrf  
+      <div class="form-group col-sm-12 justify-content d-flex">
+        <label for="commentBody">Comment</label>
+        <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
+        <input type='submit' value='enviar'>
+      </div>
+    </form>
     <section class='row' id="postComments-{{$post->id}}">
-    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST'>
-        <div class="form-group col-sm-12">
-          @csrf
-          <label for="commentBody">Comment</label>
-          <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
-          <input type='submit' value='enviar'>
-        </div>
-      </form>
     </section>
   </div>
 <script>
@@ -81,15 +85,15 @@ $postId = $post->id;
     event.preventDefault();
     // Check if comments for this post have alredy been loaded
     commentSection = document.getElementById("postComments-"+id);
-    console.log(commentSection.getAttribute('showing')===true);
     if(commentSection.getAttribute('showing')){
       excludeCommentSection(commentSection);
-      commentSection.removeAttribute('showing')
+      commentSection.removeAttribute('showing');
+      $("#formComments-"+id).toggle();
     } else {
-      console.log('here');
       $.get("/comment/"+id, function(data,status) {
         writeCommentSection(data,commentSection);
         commentSection.setAttribute('showing',true);
+        $("#formComments-"+id).toggle();
       })
     }
     // If they have, 
@@ -121,7 +125,7 @@ $postId = $post->id;
       <div class="col-sm-11 d-flex" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
             <a href="#" class=' align-self-center'>
-                <img src="${comment.user.user_avatar}" width="32" height="32" alt="...">
+                <img src="" width="32" height="32" alt="...">
             </a>
         </div>
         <div class="col-sm-8 mt-2">
