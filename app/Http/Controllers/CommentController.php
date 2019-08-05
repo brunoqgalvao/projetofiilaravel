@@ -18,10 +18,12 @@ class CommentController extends Controller
         $comment->body = $request->commentBody;
         $comment->user_id = Auth::id();
         $post->comments()->save($comment); 
+        return redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function getComments(Request $request, $postId){
         $post = Post::findOrFail($postId);
-        return $post->comments()->all();
+        $comments = $post->comments()->with('User')->get();
+        return response()->json($comments);
     }
 }

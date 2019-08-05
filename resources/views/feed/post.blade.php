@@ -66,6 +66,7 @@ $postId = $post->id;
     <section class='row' id="postComments-{{$post->id}}">
     <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST'>
         <div class="form-group col-sm-12">
+          @csrf
           <label for="commentBody">Comment</label>
           <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
           <input type='submit' value='enviar'>
@@ -86,8 +87,8 @@ $postId = $post->id;
       commentSection.removeAttribute('showing')
     } else {
       console.log('here');
-      $.get("/api/comment/teste", function(data,status) {
-        writeCommentSection(data.comments,commentSection);
+      $.get("/comment/"+id, function(data,status) {
+        writeCommentSection(data,commentSection);
         commentSection.setAttribute('showing',true);
       })
     }
@@ -120,15 +121,15 @@ $postId = $post->id;
       <div class="col-sm-11" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
             <a href="#" class=' align-self-center'>
-                <img src="" width="32" height="32" alt="...">
+                <img src="${comment.user.user_avatar}" width="32" height="32" alt="...">
             </a>
         </div>
         <div class="col-sm-8 mt-2">
         <p>
-          <a href="/feed/${comment.user_name}" class="anchor-username">
-            ${comment.user_name}
+          <a href="/feed/${comment.user.name}" class="anchor-username">
+            ${comment.user.name}
           </a>
-          ${comment.text}
+          ${comment.body}
         </p>
         </div>
     </div>
