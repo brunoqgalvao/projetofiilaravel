@@ -20,6 +20,12 @@ Route::get('/login', 'landingController@login')->name('login');
 Route::get('/register', 'landingController@register')->name('register');
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
+Route::post('/post','PostController@createPost');
+
 Route::get('/feed', 'feedController@getFeed');
 Route::get('/feed/{roomId}', 'feedController@getFeedByRoom');
 
+Route::post('/comment/{postId}', 'CommentController@createComment');
+Route::get('/comment/{postId}', 'CommentController@getComments');

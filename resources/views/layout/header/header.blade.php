@@ -17,11 +17,11 @@
   </div>
   <div class='header-login-btns'>
     <div class="mb-2">
-      <button type="button" class="btn btn-padrao btn-small" data-toggle="modal" data-target="#modalCadastrar">
+      <button id='register-button' type="button" class="btn btn-padrao btn-small">
         CADASTRO
       </button>
     </div>
-    <button type="button" class="btn btn-login btn-small" data-toggle="modal" data-target="#modalLogin">
+    <button type="button" id='login-button' class="btn btn-login btn-small">
       ENTRAR
     </button>
 
@@ -53,3 +53,14 @@
 @include('layout.header.modalNavigation')
 
 @endif
+
+<script type="text/javascript">
+  $('#login-button').on('click',function(){
+      $('#modalLogin').modal('show');
+      window.history.replaceState( {} , 'register' , '/?login');
+  });
+  $('#register-button').on('click',function(){
+      $('#modalCadastrar').modal('show');
+      window.history.replaceState( {} , 'register' , '/?register');
+s  });
+</script>

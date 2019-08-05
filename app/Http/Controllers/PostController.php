@@ -38,15 +38,8 @@ class PostController extends Controller {
             $room = Room::firstOrCreate(['name' =>$request->tag]);
             $post->rooms()->attach($room->id);
             //TODO: this view has to be the same view the person was in (last url)
-            return redirect('/feed');
+            return redirect($_SERVER['HTTP_REFERER']);
         } else 
-            return redirect('/feed');
-    }
-    
-    public function getPost(Request $request) {
-        if($request->isMethod('get')){
-            $posts = Post::with('postOwner')->get();
-            return view('home', ['posts' => $posts]);
-        }
+            return redirect($_SERVER['HTTP_REFERER']);
     }
 }

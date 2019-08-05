@@ -13,17 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+Route::middleware('auth:api')->get('/user', function (Request $request) { return $request->user();});
+Route::middleware('auth')->post('/like', 'Api\LikeController@likeUnlike');  // nao consegui por auth api
+Route::get('/rooms', 'Api\RoomController@getAllRooms');
+Route::get('/comment/teste', 'Api\CommentController@teste');
 Route::post('/upload/image', 'Api\UploadController@uploadImage');
 
 // Route::get('/comment/{postId}','Api\CommentController@getComments');
 // rota teste
-Route::get('/comment/teste', 'Api\CommentController@teste');
-
-Route::get('/rooms', 'Api\RoomController@getAllRooms');
 
 
 Route::get('/usuarios','api\UsuariosController@pegarTodos');

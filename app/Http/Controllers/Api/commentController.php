@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Comment;
+use App\User;
+use Auth;
 
 class CommentController extends Controller
 {
@@ -34,5 +37,10 @@ class CommentController extends Controller
         ];
 
         return response()->json($data);
+    }
+
+    public function getComments(Request $request, $postId){
+        $post = Post::findOrFail($postId);
+        return $post->comments()->all();
     }
 }

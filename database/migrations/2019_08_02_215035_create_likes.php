@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarComments extends Migration
+class CreateLikes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,12 @@ class CriarComments extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function(Blueprint $table){
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('content');
-            $table->timestamps();
+        Schema::create('likes', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('comment_id');
             $table->foreign('post_id')->references('id')->on('posts')->notnull();
             $table->foreign('user_id')->references('id')->on('users')->notnull();
-            $table->foreign('comment_id')->references('id')->on('comments');
         });
     }
 
@@ -34,7 +29,6 @@ class CriarComments extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
-
+        Schema::dropIfExists('likes');
     }
 }

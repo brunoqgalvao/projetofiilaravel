@@ -49,9 +49,9 @@ $postId = $post->id;
                   </a>
                 </li>
               <li class='mx-3 my-2'>
-                <a href="#">
+                <a href="#" onclick="toggleLike({{$postId}})">
                     <i class="fa fa-thumbs-up" style="color:var(--verde)"></i>
-                    {{$post['likes_total']}}
+                <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
                 </a>
               </li>
               <li class='mx-3 my-2'>
@@ -64,9 +64,15 @@ $postId = $post->id;
       </div>
     </div>
     <section class='row' id="postComments-{{$post->id}}">
+    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST'>
+        <div class="form-group col-sm-12">
+          <label for="commentBody">Comment</label>
+          <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
+          <input type='submit' value='enviar'>
+        </div>
+      </form>
     </section>
-</div>
-</div>
+  </div>
 <script>
 
   // load comentarios;
@@ -82,7 +88,7 @@ $postId = $post->id;
       console.log('here');
       $.get("/api/comment/teste", function(data,status) {
         writeCommentSection(data.comments,commentSection);
-        commentSection.setAttribute('showing',true)
+        commentSection.setAttribute('showing',true);
       })
     }
     // If they have, 
@@ -118,10 +124,12 @@ $postId = $post->id;
             </a>
         </div>
         <div class="col-sm-8 mt-2">
-        <a href="#" class="anchor-username">
-                ${comment.user_name}
-        </a>
-        <p>${comment.text}</p>
+        <p>
+          <a href="/feed/${comment.user_name}" class="anchor-username">
+            ${comment.user_name}
+          </a>
+          ${comment.text}
+        </p>
         </div>
     </div>
 
@@ -129,4 +137,25 @@ $postId = $post->id;
     return commentDiv;
   }
 
+</script>
+
+<script>
+// like logic
+
+var toggleLike = function (postId) {
+  var token = $("meta[name = 'csrf-token']").val();
+  $.ajax({
+    url : '/api/like',
+    type : 'post',
+    data : {
+        token : '{{csrf_token()}}',
+        'postId' : postId
+    },
+    success : function(res){
+      console.log(res)
+        document.querySelector(`#likes-total-${postId}`).innerHTML=res.likes_total;
+        console.log(res.likes_total);
+    }
+  });
+};
 </script>
