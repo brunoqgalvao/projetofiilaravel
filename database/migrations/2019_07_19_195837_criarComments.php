@@ -15,7 +15,7 @@ class CriarComments extends Migration
     {
         Schema::create('comments', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('body');
+            $table->string('body',10000);
             $table->timestamps();
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');

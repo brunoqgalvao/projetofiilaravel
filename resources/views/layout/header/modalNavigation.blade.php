@@ -91,7 +91,7 @@
        <nav class='list-group'>
         <a class='list-group-item' href="/feed/{{ Auth::user()->name }}">       {{ Auth::user()->name }}
         </a>
-         <a class='list-group-item' href='feed'>Página Inicial</a>
+         <a class='list-group-item' href='/feed'>Página Inicial</a>
          <a class='list-group-item' href='#'>Gerenciar perfil</a>
          <a class='list-group-item' href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">

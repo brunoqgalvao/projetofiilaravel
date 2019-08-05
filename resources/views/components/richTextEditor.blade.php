@@ -1,5 +1,10 @@
 <!-- Include Quill stylesheet -->
+{{-- <script src={{ URL::asset("/js/quill.min.js") }}></script> --}}
+<!-- Include the Quill library -->
+{{-- <script src="//cdn.quilljs.com/1.3.6/quill.js"></script> --}}
+{{-- <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script> --}}
 <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
 
 <div class="col-sm-1 pt-1">
   <a href="#">
@@ -29,16 +34,46 @@
 </div>
 
 
-<!-- Include the Quill library -->
-<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
 
 <script>
+
+const atValues = [
+  { id: 1, value: 'Fredrik Sundqvist', link:'/teste' },
+  { id: 2, value: 'Patrik Sjölin', link:'/teste' }
+];
+const hashValues = [
+  { id: 3, value: 'Fredrik Sundqvist 2', link:'/teste' },
+  { id: 4, value: 'Patrik Sjölin 2', link:'/teste' }
+]
 
   // create quill
   var quill = new Quill('#editor', {
     modules: {
-      toolbar: '#toolbar'
+      toolbar: '#toolbar',
+      mention: {
+          allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
+          mentionDenotationChars: ["@", "#"],
+          dataAttributes: ['id','value','link'],
+          source: function (searchTerm, renderList, mentionChar) {
+            let values;
+ 
+            if (mentionChar === "@") {
+              values = atValues;
+            } else {
+              values = hashValues;
+            }
+ 
+            if (searchTerm.length === 0) {
+              renderList(values, searchTerm);
+            } else {
+              const matches = [];
+              for (i = 0; i < values.length; i++)
+                if (~values[i].value.toLowerCase().indexOf(searchTerm.toLowerCase())) matches.push(values[i]);
+              renderList(matches, searchTerm);
+            }
+          },
+        },
     },
     theme: 'snow'
   });
@@ -117,41 +152,33 @@ function selectLocalImage() {
     quill.getModule('toolbar').addHandler('image', () => {
       selectLocalImage();
     });
-
-  // var toolbarOptions = [
-//     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-//     ['blockquote', 'code-block'],
-
-//     [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-//     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-//     [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-//     [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-//     [{ 'direction': 'rtl' }],                         // text direction
-
-//     [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-//     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-//     [ 'link', 'image', 'video', 'formula' ],          // add's image support
-//     [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-//     [{ 'font': [] }],
-//     [{ 'align': [] }],
-
-//     ['clean']                                         // remove formatting button
-// ];
 </script>
 
 <script>
 
-quill.on('text-change', function(delta, oldDelta, source) {
-  if (source == 'api') {
-    console.log("An API call triggered this change.");
-  } else if (source == 'user') {
-    editorFunctions(oldDelta);
-    }
-});
+// quill.on('text-change', function(delta, oldDelta, source) {
+//   if (source == 'api') {
+//     console.log("An API call triggered this change.");
+//   } else if (source == 'user') {
+//     text = quill.getText();
+//     editorFunctions(text,delta);
+//     }
+// });
 
-function editorFunctions(delta) {
-  console.log(delta);
-}
+// function editorFunctions(text,delta) {
+//   text = quill.getText();
+//   hashtags = /\B#\w+/igm
+//   var counter =0;
+//   htmlText = quill.container.innerHTML;
+//   if(htmlText.match(hashtags)){
+//     newHtmlText = htmlText.replace(hashtags, function($0) {
+//       return '<b>'+ $0 + '</b>';
+//     })
+//     quill.container.innerHTML = newHtmlText;
+//   }
+
+
+// }
 
 
 </script>
