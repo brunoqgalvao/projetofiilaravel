@@ -66,7 +66,7 @@ $postId = $post->id;
     <section class='row' id="postComments-{{$post->id}}">
     <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10" >
         <div class="form-group col-sm-12 justify-content d-flex">
-          <label for="commentBody">Comment</label>
+          <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
           <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
           <input type='submit' value='enviar'>
         </div>
