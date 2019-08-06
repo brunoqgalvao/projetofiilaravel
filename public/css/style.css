@@ -343,3 +343,8 @@ color: white;
   background-color: #3b5998;
   border-color: rgba(0,0,0,0.2);
 }
+
+/*BACKGROUND COMMENT*/
+.bg-light-grey {
+  background-color: #E8E8E8;
+}

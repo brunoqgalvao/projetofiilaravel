@@ -15,12 +15,11 @@ class CriarComments extends Migration
     {
         Schema::create('comments', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('content');
+            $table->string('body');
             $table->timestamps();
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger('comment_id')->nullable()->default(null);
             $table->foreign('post_id')->references('id')->on('posts')->notnull();
             $table->foreign('user_id')->references('id')->on('users')->notnull();
             $table->foreign('comment_id')->references('id')->on('comments');
