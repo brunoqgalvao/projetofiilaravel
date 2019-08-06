@@ -18,6 +18,7 @@ class feedController extends Controller
     public function getFeedByRoom(Request $request, $roomName) {
         if($request->isMethod('get')){
             $posts = Post::with('postOwner')
+                ->withCount('likes')
                 ->whereHas('rooms', function ($query) use ($roomName) {$query->where('name', $roomName);})
                 ->orderBy('created_at', 'DESC')
                 ->get();

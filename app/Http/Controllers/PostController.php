@@ -8,7 +8,12 @@ use App\Post;
 use App\PostOwner;
 use App\Room;
 
-
+function findTags($request) {
+    // $pattern = '/\B#\w++/im';
+    $pattern = '/[^"|>][^"|>]*(?=\\\" data-link=)/';
+    $tags = preg_match_all($pattern,$request->postContent, $matches);
+    return($matches[0]);
+}
 
 class PostController extends Controller {
     /**
@@ -35,8 +40,13 @@ class PostController extends Controller {
                 "content"=>$request->postContent,
             ]);
             // cria ou encontra rooms a partir das tags e adicona no post
+            $tags = findTags($request);
             $room = Room::firstOrCreate(['name' =>$request->tag]);
             $post->rooms()->attach($room->id);
+            foreach($tags as $tag){
+                $room = Room::firstOrCreate(['name' =>$tag]);
+                $post->rooms()->attach($room->id);
+            }
             //TODO: this view has to be the same view the person was in (last url)
             return redirect($_SERVER['HTTP_REFERER']);
         } else 
