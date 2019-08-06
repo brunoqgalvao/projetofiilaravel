@@ -1,7 +1,9 @@
 <?php 
 //TODO: gambiarra php
 
-$content = str_replace('"', "", $post->content);
+$content = str_replace('&quot;', "'", $post->content);
+$content = substr($content,1);
+$content = substr($content,0,-1);
 $content = str_replace('\\', "", $content);
 $user = $post->postOwner->user;
 $postId = $post->id;
@@ -38,7 +40,7 @@ $postId = $post->id;
     <div class="col-sm-1">
     </div>
     <div class="col-sm-11 post-content">
-      {!!$content!!}
+      {!! $content !!}
     </div>
   </section>
     <div class='row'>
