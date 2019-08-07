@@ -17,6 +17,7 @@ class CriarComments extends Migration
             $table->bigIncrements('id');
             $table->string('body',10000);
             $table->timestamps();
+            $table->string('likes_total')->default('0');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('comment_id')->nullable()->default(null);

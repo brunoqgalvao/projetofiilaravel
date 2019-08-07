@@ -72,9 +72,11 @@ $postId = $post->id;
     <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10 hidden" >
         @csrf  
       <div class="form-group col-sm-12 justify-content d-flex">
-        <label for="commentBody">Comment</label>
-        <input type="text" class="form-control" name='commentBody' placeholder="Comente...">
-        <input type='submit' value='enviar'>
+        <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
+        <input type="text" class="form-control ml-2" name='commentBody' placeholder="Comente...">
+        <button type='submit' value='enviar' class="btn-md ml-2">
+          <i class="fa fa-paper-plane mx-2"></i>  
+        </button>
       </div>
     </form>
     <section class='row' id="postComments-{{$post->id}}">
@@ -123,24 +125,32 @@ $postId = $post->id;
     commentDiv.setAttribute("class", "col-sm-12");
     commentDiv.innerHTML = `
     <div class="col-sm-1">
-      </div>
+    </div>
       <div class="col-sm-11 d-flex" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
-            <a href="#" class=' align-self-center'>
-                <img src="" width="32" height="32" alt="...">
+            <a href="#" class='align-self-center'>
+              <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
             </a>
         </div>
-        <div class="col-sm-8 mt-2">
-        <p>
-          <a href="/feed/${comment.user.name}" class="anchor-username">
-            ${comment.user.name}
-          </a>
-          ${comment.body}
-        </p>
+        <div class="col-sm-8 col-md-11 ml-2 mt-2 d-flex bg-light-grey">
+          <p style="word-break: break-all">
+            <a href="/feed/${comment.user.name}" class="anchor-username font-weight-bold">
+              ${comment.user.name}
+            </a>
+            ${comment.body}
+          </p>
         </div>
+    </div>
+    <div class="container">
+      <div class="ml-4 pl-5">
+          <a href="#" class='align-self-center' onclick="toggleLikeComment(${comment.id})"> Curtir </a> 
+          <span id='comment-likes-total-${comment.id}'>${comment.likes_total}</span>
+          <a href="#" class='align-self-center ml-2'> Responder </a>
+      </div>
     </div>
 
     `
+
     return commentDiv;
   }
 
@@ -161,6 +171,22 @@ var toggleLike = function (postId) {
     success : function(res){
       console.log(res)
         document.querySelector(`#likes-total-${postId}`).innerHTML=res.likes_total;
+        console.log(res.likes_total);
+    }
+  });
+};
+var toggleLikeComment = function (commentId) {
+  var token = $("meta[name = 'csrf-token']").val();
+  $.ajax({
+    url : '/api/like/comment',
+    type : 'post',
+    data : {
+        token : '{{csrf_token()}}',
+        'commentId' : commentId
+    },
+    success : function(res){
+      console.log(res)
+        document.querySelector(`#comment-likes-total-${commentId}`).innerHTML=res.likes_total;
         console.log(res.likes_total);
     }
   });

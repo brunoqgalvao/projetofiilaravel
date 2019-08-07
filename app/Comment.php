@@ -20,4 +20,8 @@ class Comment extends Model
     public function Comment(){
         return $this->belongsTo('App\Post');
     }
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'commentlikes');
+    }
 }

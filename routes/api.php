@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) { return $request->user();});
 Route::middleware('auth')->post('/like', 'Api\LikeController@likeUnlike');  // nao consegui por auth api
+Route::middleware('auth')->post('/like/comment', 'Api\LikeController@commentLikeUnlike');
 Route::get('/rooms', 'Api\RoomController@getAllRooms');
 Route::get('/comment/teste', 'Api\CommentController@teste');
 Route::post('/upload/image', 'Api\UploadController@uploadImage');
