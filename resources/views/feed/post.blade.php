@@ -143,7 +143,8 @@ $postId = $post->id;
     </div>
     <div class="container">
       <div class="ml-4 pl-5">
-          <a href="#" class='align-self-center'> Curtir </a>
+          <a href="#" class='align-self-center' onclick="toggleLikeComment(${comment.id})"> Curtir </a> 
+          <span id='comment-likes-total-${comment.id}'>${comment.likes_total}</span>
           <a href="#" class='align-self-center ml-2'> Responder </a>
       </div>
     </div>
@@ -170,6 +171,22 @@ var toggleLike = function (postId) {
     success : function(res){
       console.log(res)
         document.querySelector(`#likes-total-${postId}`).innerHTML=res.likes_total;
+        console.log(res.likes_total);
+    }
+  });
+};
+var toggleLikeComment = function (commentId) {
+  var token = $("meta[name = 'csrf-token']").val();
+  $.ajax({
+    url : '/api/like/comment',
+    type : 'post',
+    data : {
+        token : '{{csrf_token()}}',
+        'commentId' : commentId
+    },
+    success : function(res){
+      console.log(res)
+        document.querySelector(`#comment-likes-total-${commentId}`).innerHTML=res.likes_total;
         console.log(res.likes_total);
     }
   });
