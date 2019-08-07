@@ -38,14 +38,14 @@
 
 <script>
 
-const atValues = [
-  { id: 1, value: 'Fredrik Sundqvist', link:'/teste' },
-  { id: 2, value: 'Patrik Sjölin', link:'/teste' }
-];
-const hashValues = [
-  { id: 3, value: 'Fredrik Sundqvist 2', link:'/teste' },
-  { id: 4, value: 'Patrik Sjölin 2', link:'/teste' }
-]
+const hashValues = [];
+
+$(document).ready(()=>{
+  fetch("/api/rooms")
+    .then(res => res.json())
+    .then(rooms => rooms.forEach(room => hashValues.push({id:room.id,value:room.name,link:`/feed/${room.name}`})))
+});
+
 
   // create quill
   var quill = new Quill('#editor', {
@@ -53,7 +53,7 @@ const hashValues = [
       toolbar: '#toolbar',
       mention: {
           allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
-          mentionDenotationChars: ["@", "#"],
+          mentionDenotationChars: ["#"],
           dataAttributes: ['id','value','link'],
           source: function (searchTerm, renderList, mentionChar) {
             let values;
