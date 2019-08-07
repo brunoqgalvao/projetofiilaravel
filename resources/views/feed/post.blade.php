@@ -125,24 +125,31 @@ $postId = $post->id;
     commentDiv.setAttribute("class", "col-sm-12");
     commentDiv.innerHTML = `
     <div class="col-sm-1">
-      </div>
+    </div>
       <div class="col-sm-11 d-flex" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
             <a href="#" class='align-self-center'>
               <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
             </a>
         </div>
-        <div class="col-sm-8 ml-2 mt-2 d-flex bg-light-grey">
-        <p style="word-break: break-all">
-          <a href="/feed/${comment.user.name}" class="anchor-username font-weight-bold">
-            ${comment.user.name}
-          </a>
-          ${comment.body}
-        </p>
+        <div class="col-sm-8 col-md-11 ml-2 mt-2 d-flex bg-light-grey">
+          <p style="word-break: break-all">
+            <a href="/feed/${comment.user.name}" class="anchor-username font-weight-bold">
+              ${comment.user.name}
+            </a>
+            ${comment.body}
+          </p>
         </div>
+    </div>
+    <div class="container">
+      <div class="ml-4 pl-5">
+          <a href="#" class='align-self-center'> Curtir </a>
+          <a href="#" class='align-self-center ml-2'> Responder </a>
+      </div>
     </div>
 
     `
+
     return commentDiv;
   }
 
