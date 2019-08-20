@@ -24,11 +24,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'id','password', 'remember_token',
     ];
 
     public function postOwner()
     {
         return $this->belongsTo('App\PostOwner');
     }
+    
 }

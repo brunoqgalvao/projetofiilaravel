@@ -14,7 +14,6 @@
 <div class='col-sm-10 mx-auto'>
   <div class='rounded'>
     <div id="editor" class='rounded py-0' style="background:white">
-      <small>O que você está pensando?</small>
     </div>
   </div>
   <div id="toolbar" class="" style="display:none;border:none;">
@@ -75,7 +74,8 @@ $(document).ready(()=>{
           },
         },
     },
-    theme: 'snow'
+    theme: 'snow',
+    placeholder: 'O que você está pensando?'
   });
 
   

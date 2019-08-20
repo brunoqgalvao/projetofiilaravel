@@ -72,7 +72,7 @@ $postId = $post->id;
     <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10 hidden" >
         @csrf  
       <div class="form-group col-sm-12 justify-content d-flex">
-        <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
+        <img src="{{asset(Auth::user()->user_avatar)}}" width="32" height="32" alt="...">
         <input type="text" class="form-control ml-2" name='commentBody' placeholder="Comente...">
         <button type='submit' value='enviar' class="btn-md ml-2">
           <i class="fa fa-paper-plane mx-2"></i>  
@@ -129,7 +129,7 @@ $postId = $post->id;
       <div class="col-sm-11 d-flex" id="showComment{{$postId}}">
         <div class="col-sm-1 d-flex align-middle">
             <a href="#" class='align-self-center'>
-              <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
+              <img src="${comment.user.user_avatar}" width="32" height="32" alt="...">
             </a>
         </div>
         <div class="col-sm-8 col-md-11 ml-2 mt-2 d-flex bg-light-grey">
@@ -142,10 +142,15 @@ $postId = $post->id;
         </div>
     </div>
     <div class="container">
-      <div class="ml-4 pl-5">
-          <a href="#" class='align-self-center' onclick="toggleLikeComment(${comment.id})"> Curtir </a> 
-          <span id='comment-likes-total-${comment.id}'>${comment.likes_total}</span>
-          <a href="#" class='align-self-center ml-2'> Responder </a>
+      <div class="justify-content-beetween">
+        <div class="row col-6">
+            <a href="#" class='align-self-center' onclick="toggleLikeComment(${comment.id})"> Curtir </a> 
+            <a href="#" class='align-self-center ml-2'> Responder </a>
+        </div>
+        <div class="row col-4">
+            
+            <span id='comment-likes-total-${comment.id}'>${comment.likes_total}</span>
+        </div>
       </div>
     </div>
 
