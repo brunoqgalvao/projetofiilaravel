@@ -4,8 +4,10 @@
 //TODO: Solve this
 $user = Auth::user();
 ?>
-
 @section('content')
+  @if(isset($room))  
+    @include('feed.banner')
+  @endif
   @include('feed.newPost')
   @foreach($posts as $post)
     @include('feed.post', ['post' => $post])

@@ -23,7 +23,7 @@ class feedController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->get();
                 
-            return view('feed', ['posts' => $posts]);
+            return view('feed', ['posts' => $posts, 'room' => ['name' => $roomName, 'avatar' => '', 'banner' => '']]);
         }
     }
 
