@@ -14,7 +14,6 @@
 <div class='col-sm-10 mx-auto'>
   <div class='rounded'>
     <div id="editor" class='rounded py-0' style="background:white">
-      <small>O que você está pensando?</small>
     </div>
   </div>
   <div id="toolbar" class="" style="display:none;border:none;">
@@ -46,6 +45,13 @@ $(document).ready(()=>{
     .then(rooms => rooms.forEach(room => hashValues.push({id:room.id,value:room.name,link:`/feed/${room.name}`})))
 });
 
+// var bindings = {
+//   enter: {
+//     key: 'enter',
+//     handler: function() {
+//       (#quill-send);
+//     }
+//   };
 
   // create quill
   var quill = new Quill('#editor', {
@@ -75,8 +81,11 @@ $(document).ready(()=>{
           },
         },
     },
-    theme: 'snow'
+    theme: 'snow',
+    placeholder: 'O que você está pensando?'
   });
+
+  
 
   
   // toggle toolbar

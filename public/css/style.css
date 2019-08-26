@@ -285,17 +285,17 @@ footer > .social-media {
 }
 
 .fa-facebook {
-background: #3B5998;
+background: #158891;
 color: white;
 }
 
 .fa-twitter {
-background: #55ACEE;
+background: #158891;
 color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
+  background: #158891;
   color: white;
 }
 
@@ -347,4 +347,11 @@ color: white;
 /*BACKGROUND COMMENT*/
 .bg-light-grey {
   background-color: #E8E8E8;
+}
+
+.change-icon > .fa + .fa, .change-icon:hover > .fa {
+  display: none;
+}
+.change-icon:hover > .fa + .fa {
+  display: inherit;
 }
