@@ -45,6 +45,13 @@ $(document).ready(()=>{
     .then(rooms => rooms.forEach(room => hashValues.push({id:room.id,value:room.name,link:`/feed/${room.name}`})))
 });
 
+// var bindings = {
+//   enter: {
+//     key: 'enter',
+//     handler: function() {
+//       (#quill-send);
+//     }
+//   };
 
   // create quill
   var quill = new Quill('#editor', {
@@ -77,6 +84,8 @@ $(document).ready(()=>{
     theme: 'snow',
     placeholder: 'O que você está pensando?'
   });
+
+  
 
   
   // toggle toolbar

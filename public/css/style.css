@@ -348,3 +348,10 @@ color: white;
 .bg-light-grey {
   background-color: #E8E8E8;
 }
+
+.change-icon > .fa + .fa, .change-icon:hover > .fa {
+  display: none;
+}
+.change-icon:hover > .fa + .fa {
+  display: inherit;
+}

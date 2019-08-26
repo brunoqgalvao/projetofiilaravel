@@ -49,8 +49,11 @@ $postId = $post->id;
       <div class='col-sm-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
               <li class='mx-3 my-2'>
-                  <a href="#" onclick="loadNWriteComments(event, {{$post->id}})">
-                    <i class="fa fa-comment"  style="color:var(--verde)"></i> 
+                  <a href="#" onclick="loadNWriteComments(event, {{$post->id}})" >
+                    <span class="change-icon">
+                      <i class="fa fa-comment"  style="color:var(--verde)"></i> 
+                      <i class="fa fa-comment-o"  style="color:var(--verde)"></i>
+                    </span>
                     {{$post['comments_total']}}
                   </a>
                 </li>
@@ -180,7 +183,8 @@ var toggleLike = function (postId) {
     }
   });
 };
-var toggleLikeComment = function (commentId) {
+var toggleLikeComment = function (commentId,event) {
+  event.preventDefault();
   var token = $("meta[name = 'csrf-token']").val();
   $.ajax({
     url : '/api/like/comment',
