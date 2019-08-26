@@ -56,7 +56,7 @@
     </div>
     </div>
     <div class="form-group">
-      <a href="#" id='login-forget-pwd' data-toggle="modal" data-dismiss="modal" data-target="#modalLogin">Já tem cadastro?</a>
+      <a href="#" id='ja-tem-cadastro' data-toggle="modal" data-dismiss="modal" data-target="#modalLogin">Já tem cadastro?</a>
     </div>
   </form>
 

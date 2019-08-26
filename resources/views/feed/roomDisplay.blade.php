@@ -10,8 +10,8 @@
 </style>
 
 <div id='suggested-rooms'>
-  <input type='text' id='filterRooms'>
-  <ul >
+  <input type='text' id='roomFilter' onkeyup="renderList()">
+  <ul id='roomList'>
   </ul>
 </div>
 
@@ -20,18 +20,17 @@
 
   var roomList = [];
 
-  addItem = function(item) {
-    roomList.push(item);
-  }
-
   renderItem = function(item) {
     const newItem = document.createElement('li');
     newItem.innerHTML = `<a href="/feed/${item}">#${item}</a>`;
-    $('#suggested-rooms')[0].appendChild(newItem);
+    $('#roomList')[0].appendChild(newItem);
   }
 
-  renderList = function(list) {
-    list.forEach((item) => {
+  renderList = function() {
+    filter = $("#roomFilter").val().toLowerCase();
+    filteredRoomList = roomList.filter(str => str.toLowerCase().includes(filter));
+    $('#roomList')[0].innerHTML = '';
+    filteredRoomList.forEach((item) => {
       renderItem(item);
     })
   }
@@ -40,8 +39,7 @@
     console.log('getting rooms');
     $.get('/api/rooms', function(data) {
       data.forEach( (room) => {
-        console.log(room);
-        addItem(room.name);
+        roomList.push(room.name);
       })
     }).then(() => {
       renderList(roomList);
