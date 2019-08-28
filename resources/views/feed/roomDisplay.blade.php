@@ -1,19 +1,37 @@
 <style>
-  #suggested-rooms {
-    position:fixed;
-    left:16px;
+  .fixed-scroll {
+    max-height: 90%;
+    position: fixed;
+    left:1.5%;
     top:20%;
+    width: 20%;
+  }
+  #suggested-rooms {
+    max-height: 90%;
+    position: fixed;
+    left:1%;
+    top:26%;
+    width:22%;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
   }
   li {
     list-style: none;
   }
 </style>
-
-<div id='suggested-rooms'>
-  <input type='text' id='roomFilter' onkeyup="renderList()">
-  <ul id='roomList'>
-  </ul>
+<div class="row d-none d-md-block ">
+  <div class="mb-2 ml-2">
+    <div class="form-group fixed-scroll">
+      <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()">
+    </div>
+    <div id='suggested-rooms'>
+      <div class="m-2">
+        <ul id='roomList'></ul>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 
 <script>
