@@ -3,15 +3,15 @@
     max-height: 90%;
     position: fixed;
     left:1.5%;
-    top:20%;
-    width: 20%;
+    top:99px;
+    width: 22%;
   }
   #suggested-rooms {
     max-height: 90%;
     position: fixed;
     left:1%;
     top:26%;
-    width:22%;
+    width:19%;
     overflow-y:auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -21,9 +21,9 @@
 </style>
 <div class="row d-none d-md-block ">
   <div class="mb-2 ml-2">
-      <div class="border border-info fixed-scroll p-1">
-        <div class="form-group">
-          <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()">
+      <div class="fixed-scroll p-1 bg-white">
+        <div class="form-group mt-1" style="text-align: -webkit-center;">
+          <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()" placeholder="Search" style="width: 95%;">
         </div>
         <div>
           <div class="m-2">
