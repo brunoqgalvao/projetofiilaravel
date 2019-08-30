@@ -6,12 +6,12 @@
 <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
 
-<div class="col-sm-1 pt-1">
+<div class="col-1 pt-1">
   <a href="#">
     <img  class="rounded-circle" src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
   </a>
 </div>
-<div class='col-sm-10 mx-auto'>
+<div class='col-10 mx-auto'>
   <div class='rounded'>
     <div id="editor" class='rounded py-0' style="background:white">
     </div>
@@ -22,12 +22,12 @@
     <button class="ql-image">Image</button>
   </div>
 </div>
-<div class='col-sm-1 d-flex mx-0 pl-0'>
+<div class='col-1 d-flex mx-0 pl-0'>
 <form method='post' action="{{ url('/post') }}" onSubmit="return formSubmit()">
   {{csrf_field()}}
   <input type='text' class='d-none' id='postContent' name='postContent' value=""/>
   <button id='quill-send' class='btn px-0 align-self-start pt-2'>
-      <i class="fa fa-paper-plane"></i>
+      <i class="fa fa-paper-plane icon-hover"></i>
     </button>
   </form>
 </div>

@@ -26,6 +26,9 @@
   .icon-hover {
     color:grey;
   }
+  .text-hover:hover {
+    color:var(--verde);
+  }
 
   .clickable {
     cursor:pointer;
@@ -33,6 +36,25 @@
   </style>
 
 <script>
+
+  function postComment(postId) {
+    var token = $("meta[name = 'csrf-token']").val();
+    var commentBody = $(`#commentInput${postId}`).val();
+    console.log(commentBody);
+    $.ajax({
+      url : `api/comment/${postId}`,
+      type : 'post',
+      data : {
+          token : token,
+          'commentBody' : commentBody
+      },
+      success : function(res){
+        console.log(res)
+          document.querySelector(`#likes-total-${postId}`).innerHTML=res.likes_total;
+          console.log(res.likes_total);
+    }
+  });
+  }
 
   // load comentarios;
   function loadNWriteComments(event, id) {
@@ -78,7 +100,7 @@
     <div class="col-1">
      
     </div>
-      <div class="col-sm-11 d-flex" id="showComment">
+      <div class="col-11 d-flex" id="showComment">
       <div class='row mb-2 row-full-width'>
         <div class="col-1 d-flex align-left p-0" style="align-self:start; z-index:100;">
             <a href="/feed/${comment.user.name}" class='align-self-center'>
@@ -96,7 +118,7 @@
         <div class="comment-like"> 
           <a class="align-self-center clickable" onclick="toggleLikeComment(${comment.id})">
             <i class="fa fa-thumbs-up icon-hover"></i> 
-            <span class="small" id='comment-likes-total-${comment.id}'>${comment.likes_total}</span>
+            <span class="small" id='comment-likes-total-${comment.id}' style="color:var(--verde);">${comment.likes_total}</span>
           </a> 
         </div>
         </div>

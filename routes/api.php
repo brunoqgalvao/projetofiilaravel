@@ -18,6 +18,7 @@ Route::middleware('auth')->post('/like', 'Api\LikeController@likeUnlike');  // n
 Route::middleware('auth')->post('/like/comment', 'Api\LikeController@commentLikeUnlike');
 Route::get('/rooms', 'Api\RoomController@getAllRooms');
 Route::get('/comment/teste', 'Api\CommentController@teste');
+Route::post('/comment/{postId}', 'Api\CommentController@createComment');
 Route::post('/upload/image', 'Api\UploadController@uploadImage');
 
 // Route::get('/comment/{postId}','Api\CommentController@getComments');

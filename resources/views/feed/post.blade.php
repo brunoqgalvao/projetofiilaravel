@@ -18,22 +18,22 @@ $postId = $post->id;
     </div>
     <div class="col-sm-8 mt-2">
       <a href="/feed/{{$user->name}}" class="anchor-username">
-        <h4 class="media-heading mb-0">{{$user->name}}</h4>
+        <h5 class="media-heading mb-0 text-hover">{{$user->name}}</h5>
         <small class='text-sm-left'>{{$user->credentials}}</small>
       </a>
     </div>
   </div>
   <section class='row'>
-    <div class="col-1">
+    <div class="col-sm-1">
     </div>
-    <div class="col-11 post-content">
+    <div class="col-sm-11 post-content">
       {!! $content !!}
     </div>
   </section>
     <div class='row'>
-      <div class="col-1">
+      <div class="col-sm-1">
       </div>
-      <div class='col-11 d-flex'>
+      <div class='col-sm-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
               <li class='mx-3 my-2'>
                   <a class="clickable" onclick="toggleLike({{$postId}})">
@@ -60,16 +60,15 @@ $postId = $post->id;
       </div>
     </div>
     <div class='row'>
-    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-12 hidden" >
-        @csrf  
+    <div class="col-12 hidden" id="formComments-{{$postId}}">
       <div class="form-group col-sm-12 justify-content d-flex">
         <img class="rounded-circle" src="{{asset(Auth::user()->user_avatar)}}" width="40px" height="40px" alt="...">
-        <input type="text" class="form-control ml-2" name='commentBody' placeholder="Comente...">
-        <button type='submit' value='enviar' class="btn">
-          <i class="fa fa-paper-plane mx-2"></i>  
+      <input type="text" id="commentInput{{$postId}}" class="form-control ml-2" name='commentBody' placeholder="Comente...">
+        <button type='submit' value='enviar' class="btn" onclick="postComment({{$postId}})">
+          <i class="fa fa-paper-plane mx-2 icon-hover"></i>  
         </button>
       </div>
-    </form>
+    </div>
   </div>
     <section class='row' id="postComments-{{$post->id}}">
     </section>
