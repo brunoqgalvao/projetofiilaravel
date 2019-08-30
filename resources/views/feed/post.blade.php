@@ -36,17 +36,15 @@ $postId = $post->id;
       <div class='col-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
               <li class='mx-3 my-2'>
-                  <a href="#" onclick="toggleLike({{$postId}})">
-                      <i class="fa fa-thumbs-up" style="color:var(--verde)"></i>
-                      <i class="fa fa-thumb-up"  style="color:rgba(0,0,0,0.5)"></i>
+                  <a class="clickable" onclick="toggleLike({{$postId}})">
+                      <i class="fa fa-thumbs-up icon-hover"></i>
                   <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
                   </a>
                 </li>
               <li class='mx-3 my-2'>
-                  <a href="#" onclick="loadNWriteComments(event, {{$post->id}})" >
+                  <a class="clickable" onclick="loadNWriteComments(event, {{$post->id}})" >
                     <span class="change-icon">
-                      <i class="fa fa-comment"  style="color:var(--verde)"></i> 
-                      <i class="fa fa-comment"  style="color:rgba(0,0,0,0.5)"></i>
+                      <i class="fa fa-comment icon-hover"></i> 
                     </span>
                     {{$post['comments_total']}}
                   </a>
