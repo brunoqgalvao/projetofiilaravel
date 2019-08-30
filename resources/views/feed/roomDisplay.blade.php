@@ -21,14 +21,16 @@
 </style>
 <div class="row d-none d-md-block ">
   <div class="mb-2 ml-2">
-    <div class="form-group fixed-scroll">
-      <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()">
-    </div>
-    <div id='suggested-rooms'>
-      <div class="m-2">
-        <ul id='roomList'></ul>
+      <div class="border border-info fixed-scroll p-1">
+        <div class="form-group">
+          <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()">
+        </div>
+        <div>
+          <div class="m-2">
+            <ul id='roomList'></ul>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
 </div>
 
