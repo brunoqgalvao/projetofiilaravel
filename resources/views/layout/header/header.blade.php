@@ -31,17 +31,12 @@
   </div>
 </header>
 @else
-<header>
+<header  style="position:fixed; z-index:9000">
   <div class='logo-container'>
     <a href="/" class="logo-container-link"></a>
     <div class="logo-container-logo-bg"></div>
     <span class="logo-container-title">projeto fii</span>
   </div>
-  <!-- <form action="" class='search-box d-none d-sm-block'>
-    <input type="search" name="" class="input-search" placeholder="Busque fundos de investimento...">
-    <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
-  </form> -->
-
   <div class='header-perfil-container my-2'>
     <div class="avatar-container">
       <a class="avatar-link" type="button" data-target='#modalNavigation' data-toggle='modal' id="perfil-link">
@@ -50,6 +45,8 @@
     </div>
   </div>
 </header>
+<div style="height:90px">
+</div>
 @include('layout.header.modalNavigation')
 
 @endif

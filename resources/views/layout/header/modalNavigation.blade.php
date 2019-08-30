@@ -1,4 +1,3 @@
- <!-- ref: https://www.codeseek.co/danbhala/bootstrap-fullscreen-menu-via-modal-EKoNrO -->
 
  <style>
    .modal-fullscreen-menu {
