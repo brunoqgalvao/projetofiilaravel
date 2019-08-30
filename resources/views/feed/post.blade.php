@@ -13,7 +13,7 @@ $postId = $post->id;
   <div class="row">
     <div class="col-sm-1 d-flex align-middle">
     <a href="/feed/{{$user->name}}" class=' align-self-center'>
-        <img src="{{$user->user_avatar}}" width="32" height="32" alt="...">
+        <img class="rounded-circle"  src="{{$user->user_avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
     <div class="col-sm-8 mt-2">
@@ -24,51 +24,55 @@ $postId = $post->id;
     </div>
   </div>
   <section class='row'>
-    <div class="col-sm-1">
+    <div class="col-1">
     </div>
-    <div class="col-sm-11 post-content">
+    <div class="col-11 post-content">
       {!! $content !!}
     </div>
   </section>
     <div class='row'>
-      <div class="col-sm-1">
+      <div class="col-1">
       </div>
-      <div class='col-sm-11 d-flex'>
+      <div class='col-11 d-flex'>
           <ul class="list-unstyled d-flex justify-content-center">
+              <li class='mx-3 my-2'>
+                  <a href="#" onclick="toggleLike({{$postId}})">
+                      <i class="fa fa-thumbs-up" style="color:var(--verde)"></i>
+                      <i class="fa fa-thumb-up"  style="color:rgba(0,0,0,0.5)"></i>
+                  <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
+                  </a>
+                </li>
               <li class='mx-3 my-2'>
                   <a href="#" onclick="loadNWriteComments(event, {{$post->id}})" >
                     <span class="change-icon">
                       <i class="fa fa-comment"  style="color:var(--verde)"></i> 
-                      <i class="fa fa-comment-o"  style="color:var(--verde)"></i>
+                      <i class="fa fa-comment"  style="color:rgba(0,0,0,0.5)"></i>
                     </span>
                     {{$post['comments_total']}}
                   </a>
                 </li>
-              <li class='mx-3 my-2'>
-                <a href="#" onclick="toggleLike({{$postId}})">
-                    <i class="fa fa-thumbs-up" style="color:var(--verde)"></i>
-                <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
-                </a>
-              </li>
-              <li class='mx-3 my-2'>
+ 
+              {{-- <li class='mx-3 my-2'>
                 <a href="#">
                   <i class="fa fa-share"  style="color:var(--verde)"></i> 
                   {{$post['shares_total']}}
                 </a>
-              </li>
+              </li> --}}
             </ul>
       </div>
     </div>
-    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-10 hidden" >
+    <div class='row'>
+    <form id="formComments-{{$post->id}}" action='\comment\{{$postId}}' method='POST' class="col-12 hidden" >
         @csrf  
       <div class="form-group col-sm-12 justify-content d-flex">
-        <img src="{{asset(Auth::user()->user_avatar)}}" width="32" height="32" alt="...">
+        <img class="rounded-circle" src="{{asset(Auth::user()->user_avatar)}}" width="40px" height="40px" alt="...">
         <input type="text" class="form-control ml-2" name='commentBody' placeholder="Comente...">
-        <button type='submit' value='enviar' class="btn-md ml-2">
+        <button type='submit' value='enviar' class="btn">
           <i class="fa fa-paper-plane mx-2"></i>  
         </button>
       </div>
     </form>
+  </div>
     <section class='row' id="postComments-{{$post->id}}">
     </section>
   </div>

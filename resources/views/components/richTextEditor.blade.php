@@ -8,7 +8,7 @@
 
 <div class="col-sm-1 pt-1">
   <a href="#">
-    <img  src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
+    <img  class="rounded-circle" src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
   </a>
 </div>
 <div class='col-sm-10 mx-auto'>
