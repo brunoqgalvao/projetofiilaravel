@@ -42,7 +42,7 @@ class CommentController extends Controller
 
     public function getComments(Request $request, $postId){
         $post = Post::findOrFail($postId);
-        return $post->comments()->all();
+        return $post->comments()->with('User')->orderBy('created_at', 'DESC')->get();
     }
 
     public function createComment(Request $request, $postId){

@@ -49,11 +49,18 @@
           'commentBody' : commentBody
       },
       success : function(res){
-        console.log(res)
-          document.querySelector(`#likes-total-${postId}`).innerHTML=res.likes_total;
-          console.log(res.likes_total);
+        reloadComments(postId)
     }
   });
+  }
+
+  function reloadComments(id){
+    commentSection = document.getElementById("postComments-"+id);
+    excludeCommentSection(commentSection);
+    $.get("/comment/"+id, function(data,status) {
+        writeCommentSection(data,commentSection);
+        commentSection.setAttribute('showing',true);
+      })
   }
 
   // load comentarios;

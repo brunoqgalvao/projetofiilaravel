@@ -38,15 +38,15 @@ $postId = $post->id;
               <li class='mx-3 my-2'>
                   <a class="clickable" onclick="toggleLike({{$postId}})">
                       <i class="fa fa-thumbs-up icon-hover"></i>
-                  <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
+                  <span class ="small" id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
                   </a>
                 </li>
               <li class='mx-3 my-2'>
-                  <a class="clickable" onclick="loadNWriteComments(event, {{$post->id}})" >
-                    <span class="change-icon">
+                  <a class="clickable small" onclick="loadNWriteComments(event, {{$post->id}})" >
                       <i class="fa fa-comment icon-hover"></i> 
-                    </span>
+                    <span class="small">
                     {{$post['comments_total']}}
+                    </span>
                   </a>
                 </li>
  
