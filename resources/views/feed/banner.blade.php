@@ -1,5 +1,5 @@
 
-<div class="col-md-6 col-sm-8 mx-auto my-2 py-2 rounded" style="background:white">
+<div class="col-md-5 col-sm-8 mx-auto my-2 py-2 rounded" style="background:white">
 
 <div class='row bg-container mb-2' style='height:100px'>
   <!-- img de fundo -->

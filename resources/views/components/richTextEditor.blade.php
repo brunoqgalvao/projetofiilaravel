@@ -5,12 +5,7 @@
     <i class='fa fa-times' style="position:absolute; top:5px; right:5px; z-index:150;" onclick="removeImage()"></i>
   </div>
 <div class="row" >
-<div class="col-1 pt-1">
-  <a href="#">
-    <img  class="rounded-circle" src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
-  </a>
-</div>
-<div class='col-10 mx-auto'>
+<div class='col-11'>
   <div class='rounded'>
     <div id="editor" class='rounded py-0' style="background:white">
     </div>
@@ -28,7 +23,7 @@
   @if(isset($room['name']))
 <input type='text' class='d-none' id='roomName' name='roomName' value="{{$room['name']}}"/>
   @endif
-<input type='text' class='d-none' id='postImg' name='postImg' value=""/>
+<input type='text' class='d-none' id='postImg' name='postImg' value=" "/>
   <button id='quill-send' class='btn px-0 align-self-start pt-2'>
       <i class="fa fa-paper-plane icon-hover"></i>
     </button>
@@ -160,7 +155,7 @@ function selectLocalImage() {
     function removeImage() {
       $('#post-img-container').toggle(false)
       $('#post-img-div').css('background-image', `url("")`);
-      $('#postImg').val('');
+      $('#postImg').val('  ');
     }
 
     function insertToEditor(url) {

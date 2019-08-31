@@ -33,6 +33,12 @@
   .clickable {
     cursor:pointer;
   }
+  .smaller {
+    font-size:0.8em;
+  }
+  .light-grey {
+    color:grey;
+  }
   </style>
 
 <script>
@@ -50,6 +56,7 @@
       },
       success : function(res){
         reloadComments(postId)
+        $(`#commentInput${postId}`).val("");
     }
   });
   }
@@ -120,6 +127,7 @@
               ${comment.user.name}
             </a>
             ${comment.body}
+            <span class="smaller light-grey">- ${comment.age} atrás</span>
           </p>
         </div>
         <div class="comment-like"> 

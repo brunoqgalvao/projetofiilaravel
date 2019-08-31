@@ -17,7 +17,7 @@ class CriarPosts extends Migration
             $table->bigIncrements('id');
             $table->string('content',10000);
             $table->string('title')->default("");
-            $table->string('image_url')->default("");
+            $table->string('image_url')->default("")->nullable();
             $table->string('likes_total')->default('0');
             $table->string('comments_total')->default('0');
             $table->string('shares_total')->default('0');

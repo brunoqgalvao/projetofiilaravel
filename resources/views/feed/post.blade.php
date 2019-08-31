@@ -11,14 +11,17 @@ $postId = $post->id;
 
 <div class="col-md-5 col-sm-8 mx-auto my-2 py-2" style="background:white">
   <div class="row">
-    <div class="col-sm-1 d-flex align-middle">
+    <div class="col-sm-1 d-flex" style="
+    justify-content: center;
+    margin-left: 10px;
+">
     <a href="/feed/{{$user->name}}" class=' align-self-center'>
         <img class="rounded-circle"  src="{{$user->user_avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
     <div class="col-sm-8 mt-2">
       <a href="/feed/{{$user->name}}" class="anchor-username">
-        <h5 class="media-heading mb-0 text-hover">{{$user->name}}</h5>
+        <h5 class="media-heading mb-2 text-hover">{{$user->name}}</h5>
         <small class='text-sm-left'>{{$user->credentials}}</small>
       </a>
     </div>
@@ -30,7 +33,7 @@ $postId = $post->id;
       {!! $content !!}
     </div>
   </section>
-  @if($post->image_url != "" || "  ")
+  @if(strlen($post->image_url) > 10)
     <div class='row bg-container border-top border-bottom' id="post-img-container" style='min-height:200px; height:20%;'>
       <div class='bg' id="post-img-div" style="background-image:url('{{$post->image_url}}')"></div>
     </div>
