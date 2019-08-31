@@ -71,12 +71,12 @@
     if(commentSection.getAttribute('showing')){
       excludeCommentSection(commentSection);
       commentSection.removeAttribute('showing');
-      $("#formComments-"+id).toggle();
+      // $("#formComments-"+id).toggle();
     } else {
       $.get("/comment/"+id, function(data,status) {
         writeCommentSection(data,commentSection);
         commentSection.setAttribute('showing',true);
-        $("#formComments-"+id).toggle();
+        // $("#formComments-"+id).toggle();
       })
     }
     // If they have, 

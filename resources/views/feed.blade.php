@@ -9,7 +9,7 @@ $user = Auth::user();
 @include('feed.banner')
 @endif  
   @include('feed.newPost')
-  <div id='post-container' style='min-height:200px;'>
+  <div id='post-container' style='min-height:300px;'>
   @include('feed.postSettings')
   @foreach($posts as $post)
     @include('feed.post', ['post' => $post])

@@ -1,11 +1,10 @@
-<!-- Include Quill stylesheet -->
-{{-- <script src={{ URL::asset("/js/quill.min.js") }}></script> --}}
-<!-- Include the Quill library -->
-{{-- <script src="//cdn.quilljs.com/1.3.6/quill.js"></script> --}}
-{{-- <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script> --}}
 <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 
-
+<div class='row bg-container mb-2 hidden' id="post-img-container" style='height:300px'>
+  <div class='bg' id="post-img-div" style="background-image:url('')"></div>
+    <i class='fa fa-times' style="position:absolute; top:5px; right:5px; z-index:150;" onclick="removeImage()"></i>
+  </div>
+<div class="row" >
 <div class="col-1 pt-1">
   <a href="#">
     <img  class="rounded-circle" src="{{$user['user_avatar']}}" width="32" height="32" alt="...">
@@ -29,11 +28,14 @@
   @if(isset($room['name']))
 <input type='text' class='d-none' id='roomName' name='roomName' value="{{$room['name']}}"/>
   @endif
+<input type='text' class='d-none' id='postImg' name='postImg' value=""/>
   <button id='quill-send' class='btn px-0 align-self-start pt-2'>
       <i class="fa fa-paper-plane icon-hover"></i>
     </button>
   </form>
 </div>
+</div>
+
 
 
 
@@ -47,14 +49,6 @@ $(document).ready(()=>{
     .then(res => res.json())
     .then(rooms => rooms.forEach(room => hashValues.push({id:room.id,value:room.name,link:`/feed/${room.name}`})))
 });
-
-// var bindings = {
-//   enter: {
-//     key: 'enter',
-//     handler: function() {
-//       (#quill-send);
-//     }
-//   };
 
   // create quill
   var quill = new Quill('#editor', {
@@ -119,9 +113,9 @@ function selectLocalImage() {
 
         // file type is only image.
         if (/^image\//.test(file.type)) {
-          saveToServer(file);
+          saveToServerAndInsertOutsideEditor(file);
         } else {
-          console.warn('You could only upload images.');
+          console.warn('Você só pode subir imagens');
         }
       };
     }
@@ -131,7 +125,7 @@ function selectLocalImage() {
      *
      * @param {File} file
      */
-    function saveToServer(file) {
+    function saveToServerAndInsertOutsideEditor(file) {
       const data = new FormData();
       const request = new XMLHttpRequest();
       data.append('image', file);
@@ -143,7 +137,7 @@ function selectLocalImage() {
         if (request.status === 200) {
           // this is callback data: url
           const url = JSON.parse(request.responseText).data;
-          insertToEditor(url);
+          insertOutsideEditor(url);
         }
       };
       request.send(data);
@@ -154,6 +148,21 @@ function selectLocalImage() {
      *
      * @param {string} url
      */
+
+    function insertOutsideEditor(imageUrl) {
+      removeImage();
+      var fullUrl = `http://localhost:8000${imageUrl}`
+      $('#post-img-container').toggle(true)
+      $('#post-img-div').css('background-image', `url("http://localhost:8000${imageUrl}")`);
+      $('#postImg').val(fullUrl);
+    }
+
+    function removeImage() {
+      $('#post-img-container').toggle(false)
+      $('#post-img-div').css('background-image', `url("")`);
+      $('#postImg').val('');
+    }
+
     function insertToEditor(url) {
       // push image url to rich editor.
       const range = quill.getSelection();
@@ -164,33 +173,4 @@ function selectLocalImage() {
     quill.getModule('toolbar').addHandler('image', () => {
       selectLocalImage();
     });
-</script>
-
-<script>
-
-// quill.on('text-change', function(delta, oldDelta, source) {
-//   if (source == 'api') {
-//     console.log("An API call triggered this change.");
-//   } else if (source == 'user') {
-//     text = quill.getText();
-//     editorFunctions(text,delta);
-//     }
-// });
-
-// function editorFunctions(text,delta) {
-//   text = quill.getText();
-//   hashtags = /\B#\w+/igm
-//   var counter =0;
-//   htmlText = quill.container.innerHTML;
-//   if(htmlText.match(hashtags)){
-//     newHtmlText = htmlText.replace(hashtags, function($0) {
-//       return '<b>'+ $0 + '</b>';
-//     })
-//     quill.container.innerHTML = newHtmlText;
-//   }
-
-
-// }
-
-
 </script>

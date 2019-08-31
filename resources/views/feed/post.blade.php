@@ -9,7 +9,7 @@ $user = $post->postOwner->user;
 $postId = $post->id;
 ?>
 
-<div class="col-md-6 col-sm-8 mx-auto my-2 py-2" style="background:white">
+<div class="col-md-5 col-sm-8 mx-auto my-2 py-2" style="background:white">
   <div class="row">
     <div class="col-sm-1 d-flex align-middle">
     <a href="/feed/{{$user->name}}" class=' align-self-center'>
@@ -30,23 +30,26 @@ $postId = $post->id;
       {!! $content !!}
     </div>
   </section>
+  @if($post->image_url != "" || "  ")
+    <div class='row bg-container border-top border-bottom' id="post-img-container" style='min-height:200px; height:20%;'>
+      <div class='bg' id="post-img-div" style="background-image:url('{{$post->image_url}}')"></div>
+    </div>
+    @endif
     <div class='row'>
-      <div class="col-sm-1">
-      </div>
-      <div class='col-sm-11 d-flex'>
-          <ul class="list-unstyled d-flex justify-content-center">
-              <li class='mx-3 my-2'>
+      <div class='col-sm-12'>
+          <ul class="list-unstyled d-flex py-1 pb-0 mb-0" style="justify-content:space-around;">
+              <li class='mx-3'>
                   <a class="clickable" onclick="toggleLike({{$postId}})">
                       <i class="fa fa-thumbs-up icon-hover"></i>
-                  <span id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
+                  <span class="small" id='likes-total-{{$postId}}'>{{$post['likes_count']}}</span>
                   </a>
                 </li>
-              <li class='mx-3 my-2'>
+              <li class='mx-3'>
                   <a class="clickable" onclick="loadNWriteComments(event, {{$post->id}})" >
-                    <span class="change-icon">
                       <i class="fa fa-comment icon-hover"></i> 
-                    </span>
-                    {{$post['comments_total']}}
+                      <span class="small">
+                          {{$post['comments_total']}}
+                      </span>
                   </a>
                 </li>
  
@@ -59,9 +62,9 @@ $postId = $post->id;
             </ul>
       </div>
     </div>
-    <div class='row'>
-    <div class="col-12 hidden" id="formComments-{{$postId}}">
-      <div class="form-group col-sm-12 justify-content d-flex">
+    <div class='row border-top pt-2'>
+    <div class="col-12" id="formComments-{{$postId}}">
+      <div class="form-group col-sm-12 justify-content d-flex ">
         <img class="rounded-circle" src="{{asset(Auth::user()->user_avatar)}}" width="40px" height="40px" alt="...">
       <input type="text" id="commentInput{{$postId}}" class="form-control ml-2" name='commentBody' placeholder="Comente...">
         <button type='submit' value='enviar' class="btn" onclick="postComment({{$postId}})">

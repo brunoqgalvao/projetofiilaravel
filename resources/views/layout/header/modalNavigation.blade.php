@@ -79,11 +79,9 @@
    }
  </style>
 
-
  <div class='modal fade modal-fullscreen-menu' id='modalNavigation' role='dialog' tabindex='-1'>
-   <button aria-label='Close' class='close' data-dismiss='modal' type='button'>
-     <span class='sr-only'>Close navigation</span>
-     <span class='glyphicon glyphicon-remove'></span>
+   <button aria-label='Close' class='close' data-dismiss='modal' style="position:absolute; top:5%; right:5%; z-index:150;">
+     <i class='fa fa-times' style="color:black;"></i>
    </button>
    <div class='modal-dialog'>
      <div class='modal-content'>
