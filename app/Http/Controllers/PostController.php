@@ -43,6 +43,10 @@ class PostController extends Controller {
             $tags = findTags($request);
             $room = Room::firstOrCreate(['name' =>$request->tag]);
             $post->rooms()->attach($room->id);
+            if(isset($request->roomName)){
+                $room = Room::firstOrCreate(['name' =>$request->roomName]);
+                $post->rooms()->attach($room->id);
+            }
             foreach($tags as $tag){
                 $room = Room::firstOrCreate(['name' =>$tag]);
                 $post->rooms()->attach($room->id);

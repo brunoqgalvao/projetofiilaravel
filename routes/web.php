@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::post('/post','PostController@createPost');
-
+Route::get('/analise', 'HomeController@analise');
 Route::get('/feed', 'feedController@getFeed');
 Route::get('/feed/{roomId}', 'feedController@getFeedByRoom');
 

@@ -42,7 +42,7 @@
     var commentBody = $(`#commentInput${postId}`).val();
     console.log(commentBody);
     $.ajax({
-      url : `api/comment/${postId}`,
+      url : `/api/comment/${postId}`,
       type : 'post',
       data : {
           token : token,
@@ -114,7 +114,7 @@
               <img class="rounded-circle" src="${comment.user.user_avatar}" width="40px" height="40px" alt="...">
             </a>
         </div>
-        <div class="col-10 mt-2 bg-light-grey">
+        <div class="col-10 mt-2 py-1 bg-light-grey rounded">
           <p class="small" style="word-break: break-all;">
             <a href="/feed/${comment.user.name}" class="anchor-username font-weight-bold mr-1">
               ${comment.user.name}

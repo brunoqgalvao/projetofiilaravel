@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Room;
 use App\PostOwner;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -64,7 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $owner = PostOwner::create();
-
+        $owner->room()->create(['name'=>$data['name']]);
         $nomeOriginal = $data['user_avatar']->getClientOriginalName();
 
         $avatar_path = '/storage/img/'.$nomeOriginal;

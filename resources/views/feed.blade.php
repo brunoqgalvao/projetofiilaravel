@@ -5,11 +5,11 @@
 $user = Auth::user();
 ?>
 @section('content')
-  @if(isset($room))  
-    @include('feed.banner')
-  @endif  
+@if(isset($room))  
+@include('feed.banner')
+@endif  
   @include('feed.newPost')
-  <div id='post-container'>
+  <div id='post-container' style='min-height:200px;'>
   @include('feed.postSettings')
   @foreach($posts as $post)
     @include('feed.post', ['post' => $post])

@@ -9,8 +9,8 @@ class Room extends Model
 
     public $fillable = ['name'];
 
-    public function posts()
+    public function postOwner()
     {
-        return $this->belongsToMany('App\Post', 'posts_in_rooms');
+        return $this->belongsTo('App\PostOwner');
     }
 }

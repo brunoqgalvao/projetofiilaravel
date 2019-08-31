@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Room;
 
 class feedController extends Controller
 {
@@ -16,6 +17,7 @@ class feedController extends Controller
     }
 
     public function getFeedByRoom(Request $request, $roomName) {
+        
         if($request->isMethod('get')){
             $posts = Post::with('postOwner')
                 ->withCount('likes')
@@ -23,7 +25,13 @@ class feedController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->get();
                 
-            return view('feed', ['posts' => $posts, 'room' => ['name' => $roomName, 'avatar' => '', 'banner' => '']]);
+            $room = Room::where(['name'=>$roomName])->first();
+            if(isset($room->postOwner->user)){
+                $roomAvatar = $room->postOwner->user->user_avatar;
+            } else {
+                $roomAvatar = "";
+            }
+            return view('feed', ['posts' => $posts, 'room' => ['name' => $roomName, 'avatar' => $roomAvatar, 'banner' => '']]);
         }
     }
 

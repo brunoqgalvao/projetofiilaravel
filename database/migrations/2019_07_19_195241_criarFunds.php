@@ -17,6 +17,8 @@ class CriarFunds extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('perfil');
+            $table->string('fund_avatar')->default("");
+            $table->string('fund_banner')->default("");
             $table->timestamps();
             $table->unsignedInteger('post_owner_id');
             $table->foreign('post_owner_id')->references('id')->on('post_owners')->notnull();

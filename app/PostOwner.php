@@ -17,6 +17,10 @@ class PostOwner extends Model
     {
         return $this->hasOne('App\Fund');
     }
+    public function room()
+    {
+        return $this->hasOne('App\Room');
+    }
     public function posts()
     {
         return $this->hasMany('App\Post');
