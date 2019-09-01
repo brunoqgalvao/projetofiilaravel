@@ -21,7 +21,7 @@ $postId = $post->id;
     </div>
     <div class="col-sm-8 mt-2">
       <a href="/feed/{{$user->name}}" class="anchor-username">
-        <h5 class="media-heading mb-2 text-hover">{{$user->name}}</h5>
+        <h5 class="media-heading text-hover">{{$user->name}}</h5>
         <small class='text-sm-left'>{{$user->credentials}}</small>
       </a>
     </div>
@@ -29,7 +29,7 @@ $postId = $post->id;
   <section class='row'>
     <div class="col-sm-1">
     </div>
-    <div class="col-sm-11 post-content">
+    <div class="col-sm-11 post-content py-2">
       {!! $content !!}
     </div>
   </section>
