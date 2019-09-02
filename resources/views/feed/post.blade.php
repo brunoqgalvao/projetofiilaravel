@@ -26,7 +26,7 @@ $postId = $post->id;
   <section class='row'>
     <div class="col-1">
     </div>
-    <div class="col-11 post-content">
+    <div class="col-11 post-content" style="word-break: break-all;">
       {!! $content !!}
     </div>
   </section>
