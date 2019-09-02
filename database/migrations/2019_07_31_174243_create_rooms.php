@@ -16,6 +16,7 @@ class CreateRooms extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',1000);
+            $table->string('likes_total')->default('0');
             $table->unsignedInteger('post_owner_id')->nullable();
             $table->foreign('post_owner_id')->references('id')->on('post_owners');
             $table->timestamps();

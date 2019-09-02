@@ -30,7 +30,7 @@ class PostsTableSeeder extends Seeder
                 ]);                    
                 // randomly add post image
                 if($faker->numberBetween(1,10)>5){
-                    $post->image_url = "storage/img/".$faker->image('public/storage/img',400,300, null, false);
+                    $post->image_url = "/storage/img/".$faker->image('public/storage/img',400,300, null, false);
                 } else {
                     $post->image_url = "   ";
                 }

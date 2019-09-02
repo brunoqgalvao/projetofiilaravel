@@ -13,4 +13,8 @@ class Room extends Model
     {
         return $this->belongsTo('App\PostOwner');
     }
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'follows');
+    }
 }
