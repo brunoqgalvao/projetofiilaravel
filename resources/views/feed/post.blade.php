@@ -23,6 +23,7 @@ $postId = $post->id;
       <a href="/feed/{{$user->name}}" class="anchor-username">
         <h5 class="media-heading text-hover">{{$user->name}}</h5>
         <small class='text-sm-left'>{{$user->credentials}}</small>
+        <span class="smaller light-grey">- {{$post->age }} atrás</span>
       </a>
     </div>
   </div>
