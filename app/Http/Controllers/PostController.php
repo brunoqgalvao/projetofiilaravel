@@ -39,10 +39,17 @@ class PostController extends Controller {
             $post = $owner->posts()->create([
                 "content"=>$request->postContent,
             ]);
+            // se tem imagem, poe imagem no post
+            $post->image_url = $request->postImg;
+            $post->save();
             // cria ou encontra rooms a partir das tags e adicona no post
             $tags = findTags($request);
             $room = Room::firstOrCreate(['name' =>$request->tag]);
             $post->rooms()->attach($room->id);
+            if(isset($request->roomName)){
+                $room = Room::firstOrCreate(['name' =>$request->roomName]);
+                $post->rooms()->attach($room->id);
+            }
             foreach($tags as $tag){
                 $room = Room::firstOrCreate(['name' =>$tag]);
                 $post->rooms()->attach($room->id);

@@ -33,9 +33,9 @@
         @endif
       </div>
       <div class="form-group row">
-        <label for="user_avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
-        <div class="col-md-6">
-            <input id="user_avatar" type="file" class="form-control" name="user_avatar" accept="image/png, image/jpeg" required>
+        {{-- <label for="user_avatar" class="col-md-8 col-form-label"><button class='btn-submit'>{{ __('Avatar') }}</button></label> --}}
+        <div class="col-md-4">
+            <input id="user_avatar" type="file" class="custom-file-input2" class="form-control" name="user_avatar" accept="image/png, image/jpeg" required>
         </div>
       </div>
       <div class="form-group">

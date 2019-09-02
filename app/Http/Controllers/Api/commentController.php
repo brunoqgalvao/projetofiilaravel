@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Comment;
 use App\User;
 use Auth;
+use App\Post;
 
 class CommentController extends Controller
 {
@@ -41,6 +42,18 @@ class CommentController extends Controller
 
     public function getComments(Request $request, $postId){
         $post = Post::findOrFail($postId);
-        return $post->comments()->all();
+        return $post->comments()->with('User')->orderBy('created_at', 'DESC')->get();
+    }
+
+    public function createComment(Request $request, $postId){
+        $post = Post::findOrFail($postId);
+        $comment = new Comment();
+        $comment->body = $request->commentBody;
+        $comment->user_id = Auth::id();
+        $post['comments_total'] += 1;
+        $post->save();
+        $post->comments()->save($comment);
+
+        return response()->json(['success' => true]);
     }
 }

@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return redirect('/feed');
     }
+    public function analise()
+    {
+        return view('analise');
+    }
 }

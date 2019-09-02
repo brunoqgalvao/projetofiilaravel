@@ -1,4 +1,4 @@
-@extends(layout.template')
+@extends('layout.template')
 
 @section('content')
 <div class="container">
