@@ -7,12 +7,9 @@
     width: 22%;
   }
   #suggested-rooms {
-    max-height: 90%;
-    position: fixed;
-    left:1%;
-    top:26%;
-    width:19%;
+    max-height: 50vh;
     overflow-y:auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
   }
 
@@ -28,17 +25,42 @@
   .green-check {
     color:var(--verde);
   }
+
+  .style-scroll::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+  }
+
+  .style-scroll::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+  }
+
+.style-scroll::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #FFF;
+  background-image: 
+  -webkit-gradient(linear,
+  40% 0%,
+  75% 84%,
+  from(#158891),
+  to(#158891),
+  color-stop(.6,#DDDDDD))
+}
+
   li {
     list-style: none;
   }
 </style>
 <div class="row d-none d-md-block ">
-  <div class="mb-2 ml-2">
-      <div class="fixed-scroll p-1 bg-white">
+  <div class="mb-2 ml-2 fixed-scroll bg-white">
+      <div class="p-1 bg-white">
         <div class="form-group mt-1" style="text-align: -webkit-center;">
           <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()" placeholder="Search" style="width: 95%;">
         </div>
-        <div>
+        <div class="style-scroll" id="suggested-rooms">
           <div class="m-2">
             <ul id='roomList'></ul>
           </div>
