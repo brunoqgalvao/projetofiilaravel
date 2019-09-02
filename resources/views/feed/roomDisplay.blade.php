@@ -76,10 +76,9 @@
   renderItem = function(item) {
 
     console.log(item);
-    const { name , id } = item;
-
+    const { name , id, followed_by_auth_user } = item;
     const newItem = document.createElement('li');
-    newItem.innerHTML = `
+      newItem.innerHTML = `
     <div class="row justify-content-between mb-1">
       <div class="col-8 align-self-center"
       <a href="/feed/${name}">#${name}</a>
@@ -89,6 +88,10 @@
       </div>
     </div>
     `;
+    if(followed_by_auth_user){
+      $(`#follow-room-${id}`).removeClass("btn btn-sm button-hover").addClass("fa fa-check btn btn-sm green-check").text("");
+    }
+
     $('#roomList')[0].appendChild(newItem);
   }
 
