@@ -29,7 +29,7 @@ $postId = $post->id;
   <section class='row'>
     <div class="col-sm-1">
     </div>
-    <div class="col-11 post-content py-2"  style="word-break: break-all;">
+    <div class="col-sm-11 post-content py-2"  style="word-break: break-all;">
       {!! $content !!}
     </div>
   </section>

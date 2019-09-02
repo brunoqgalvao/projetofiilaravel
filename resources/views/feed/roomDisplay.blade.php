@@ -15,6 +15,19 @@
     overflow-y:auto;
     -webkit-overflow-scrolling: touch;
   }
+
+  .button-hover:hover {
+    background-color:var(--verde);
+    color: white;
+  }
+  .button-hover {
+    background-color:grey;
+    color: white;
+  }
+
+  .green-check {
+    color:var(--verde);
+  }
   li {
     list-style: none;
   }
@@ -42,7 +55,19 @@
 
   renderItem = function(item) {
     const newItem = document.createElement('li');
-    newItem.innerHTML = `<a href="/feed/${item}">#${item}</a>`;
+    newItem.innerHTML = `
+    <div class="row justify-content-between mb-1">
+      <div class="col-8 align-self-center"
+      <a href="/feed/${item}">#${item}</a>
+      </div>
+      <div class="mr-3">
+      <button class="btn btn-sm button-hover">Seguir</button>
+      </div>
+    </div>
+    `;
+    $("button").click(()=>{
+      $(this).removeClass("btn btn-sm button-hover").addClass("fa fa-check btn btn-sm green-check").text("");
+    });
     $('#roomList')[0].appendChild(newItem);
   }
 
