@@ -53,6 +53,9 @@
 
   var roomList = [];
 
+  var followButton = (id) => `<button class="btn btn-sm button-hover" id="follow-room-${id}" onclick="toggleFollow(${id})">Seguir</button>` ;
+  var unfollowButton = (id) => `<button class="btn btn-sm" id="follow-room-${id}" onclick="toggleFollow(${id})"><i class="fa fa-check green-check"></i></button>` ;
+
   var toggleFollow = function (roomId) {
   var token = $("meta[name = 'csrf-token']").val();
   $.ajax({
@@ -63,11 +66,10 @@
         'roomId' : roomId
     },
     success : function(res){
-      console.log(res)
       if(res.liked){
-        $(`#follow-room-${roomId}`).removeClass("btn btn-sm button-hover").addClass("fa fa-check btn btn-sm green-check").text("");
+        $(`#follow-room-${roomId}`).removeClass('button-hover').html(`<i class="fa fa-check green-check">`);
       } else {
-        $(`#follow-room-${roomId}`).removeClass("fa fa-check btn btn-sm green-check").addClass("btn btn-sm button-hover").text("Seguir");
+        $(`#follow-room-${roomId}`).addClass('button-hover').html('Seguir');
       }
     }
   });
@@ -75,23 +77,20 @@
 
   renderItem = function(item) {
 
-    console.log(item);
     const { name , id, followed_by_auth_user } = item;
     const newItem = document.createElement('li');
-      newItem.innerHTML = `
+    console.log(followButton(id));
+      newItem.innerHTML = (`
     <div class="row justify-content-between mb-1">
       <div class="col-8 align-self-center"
       <a href="/feed/${name}">#${name}</a>
       </div>
-      <div class="mr-3">
-      <button class="btn btn-sm button-hover" id="follow-room-${id}" onclick="toggleFollow(${id})">Seguir</button>
-      </div>
+      <div class="mr-3">`) 
+      + (followed_by_auth_user?unfollowButton(id):followButton(id)) 
+      + `</div>
     </div>
     `;
-    if(followed_by_auth_user){
-      $(`#follow-room-${id}`).removeClass("btn btn-sm button-hover").addClass("fa fa-check btn btn-sm green-check").text("");
-    }
-
+    console.log(newItem.innerHTML);
     $('#roomList')[0].appendChild(newItem);
   }
 
@@ -105,7 +104,6 @@
   }
 
   $(document).ready(function () {
-    console.log('getting rooms');
     $.get('/api/rooms', function(data) {
       data.forEach( (room) => {
         roomList.push(room);
