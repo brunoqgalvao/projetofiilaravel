@@ -6,6 +6,9 @@ $content = substr($content,1);
 $content = substr($content,0,-1);
 $content = str_replace('\\', "", $content);
 $user = $post->postOwner->user;
+if(isset($user) == false){
+  dd($post);
+}
 $postId = $post->id;
 ?>
 

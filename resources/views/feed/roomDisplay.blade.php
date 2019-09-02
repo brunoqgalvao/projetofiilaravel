@@ -82,7 +82,7 @@
     console.log(followButton(id));
       newItem.innerHTML = (`
     <div class="row justify-content-between mb-1">
-      <div class="col-8 align-self-center"
+      <div class="col-8 align-self-center">
       <a href="/feed/${name}">#${name}</a>
       </div>
       <div class="mr-3">`) 

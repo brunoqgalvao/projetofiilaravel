@@ -18,6 +18,9 @@ class feedController extends Controller
 
     public function getFeedByRoom(Request $request, $roomName) {
         
+        $isFund = false;
+        $fund = "";
+
         if($request->isMethod('get')){
             $posts = Post::with('postOwner')
                 ->withCount('likes')
@@ -28,10 +31,14 @@ class feedController extends Controller
             $room = Room::where(['name'=>$roomName])->first();
             if(isset($room->postOwner->user)){
                 $roomAvatar = $room->postOwner->user->user_avatar;
-            } else {
+            } if(isset($room->postOwner->fund)){
+                $isFund = true;
+                $fund =$room->postOwner->fund; 
+                $roomAvatar = "";
+            }else {
                 $roomAvatar = "";
             }
-            return view('feed', ['posts' => $posts, 'room' => ['name' => $roomName, 'avatar' => $roomAvatar, 'banner' => '']]);
+            return view('feed', ['posts' => $posts, 'room' => ['name' => $roomName, 'avatar' => $roomAvatar, 'banner' => '', 'isFund' => $isFund, 'fund'=> $fund]]);
         }
     }
 

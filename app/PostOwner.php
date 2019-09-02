@@ -8,7 +8,6 @@ class PostOwner extends Model
 {
     public $timestamps = false;
 
-    
     public function user()
     {
         return $this->hasOne('App\User');

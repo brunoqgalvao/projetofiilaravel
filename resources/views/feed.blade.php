@@ -5,9 +5,13 @@
 $user = Auth::user();
 ?>
 @section('content')
-@if(isset($room))  
-@include('feed.banner')
-@endif  
+  @if(isset($room))
+    @if($room['isFund'])
+      @include('feed.fundBanner')
+    @else
+      @include('feed.banner')
+    @endif
+  @endif  
   @include('feed.newPost')
     <div id='post-container' style='min-height:300px;'>
       <div class="infinite-scroll">

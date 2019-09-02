@@ -14,23 +14,30 @@ class FundsTableSeeder extends Seeder
     {
 
         $faker = Faker\Factory::create();
-
-
+        // Read JSON file
+        $funds_json = file_get_contents(realpath(__DIR__ . './funds.json'));
         
-        for ($i = 0; $i < $limit; $i++) {
+        $funds = json_decode($funds_json,false);        
 
-            $name = $faker->name;
-            $owner = PostOwner::create();
-            $owner->room()->create(['name'=>$name]);
+        $limit = 10;
+        $count = 0;
 
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => "faker",
-                'user_avatar' => "/storage/img/". $faker->image('public/storage/img',300,300,'people', false),
-                'user_level' => 0,
-                'post_owner_id' => $owner->id
-            ]);
+        foreach($funds as $fund){
+            $count = $count+1;
+            if($count < $limit){
+                if(isset($fund)){
+                    $name = $fund->name;
+                    $owner = PostOwner::create();
+                    $owner->room()->create(['name'=>$fund->ticker]);
+                    DB::table('funds')->insert([
+                        'name' => $fund->name,
+                        'ticker'=>$fund->ticker,
+                        'fund_avatar' => "",
+                        'post_owner_id' => $owner->id
+                    ]);
+                }
+            }
         }
+        
     }
 }
