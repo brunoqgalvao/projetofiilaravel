@@ -54,6 +54,7 @@
     list-style: none;
   }
 </style>
+@if(Auth::check())
 <div class="row d-none d-md-block ">
   <div class="mb-2 ml-2 fixed-scroll bg-white">
       <div class="p-1 bg-white">
@@ -68,6 +69,7 @@
       </div>
   </div>
 </div>
+@endif
 
 
 

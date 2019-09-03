@@ -23,6 +23,7 @@ class Post extends Model
                 return $string;
             }
         }
+        return "segundos";
     }
     public function ageInSeconds($time) {
         return $time->i*60+$time->h*60*60+$time->d*60*60*24+$time->m*30*60*60*24+$time->y*365*60*60*24+10;

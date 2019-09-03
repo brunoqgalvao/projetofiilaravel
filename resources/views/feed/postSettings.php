@@ -41,6 +41,7 @@
   }
   </style>
 
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
       <script type="text/javascript">
         $('ul.pagination').hide();
@@ -59,6 +60,7 @@
     </script>
 
 <script>
+@if(Auth::check())
 
   function postComment(postId) {
     var token = $("meta[name = 'csrf-token']").val();
@@ -202,4 +204,28 @@ var toggleLikeComment = function (commentId) {
     }
   });
 };
+@endif
 </script>
+
+
+<script>
+  @if(Auth::check()==false)
+  function postComment(postId) {
+    askForLogin()
+  }
+  function toggleLike() {
+    askForLogin()
+  }
+  function loadNWriteComments(){
+    askForLogin()
+  }
+
+  function askForLogin(){
+    $('#modalLogin').modal('show');
+    window.history.pushState('Login', 'Login', '?login');
+  }
+  @endif
+
+  </script>
+
+

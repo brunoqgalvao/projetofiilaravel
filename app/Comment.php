@@ -20,8 +20,9 @@ class Comment extends Model
                 $plural = $key=="mes"?"es":"s";
                 $string = "$item $key".($item>1?$plural:"");
                 return $string;
-            }
+            } 
         }
+            return "segundos";
     }
 
     public function User()

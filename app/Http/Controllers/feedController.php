@@ -62,4 +62,9 @@ class feedController extends Controller
         $posts = $allTags->posts;  
         $postOwner = $posts->postOwner;  
     }
+    public function unauthFund(Request $request)
+    {
+        $roomName = $request->fund;
+        return redirect("/feed/$roomName");
+    }
 }

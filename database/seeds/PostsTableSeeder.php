@@ -40,11 +40,9 @@ class PostsTableSeeder extends Seeder
                 }
                 $post->rooms()->attach($owner->room->id);
                 // randomly add room tags and add owner tag;
-                for($i=0; $i<rand(0,2);$i++){
-                    $rand = floor(rand(0,count($rooms)-1));
-                    $room = $rooms[$rand];
-                    $post->rooms()->attach($room->id);
-                }
+                $rand = floor(rand(0,count($rooms)-1));
+                $room = $rooms[$rand];
+                $post->rooms()->attach($room->id);
                 $post->save();
         }
     }

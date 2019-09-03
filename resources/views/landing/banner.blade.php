@@ -33,6 +33,10 @@
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
   }
 
+  .teste { 
+    border-radius: 30px;
+  }
+
   @media(max-width:576px){
     .banner-search-box, .banner-btn-analise {
     margin:0 auto;
@@ -67,21 +71,30 @@
 </style>
 
 <main>
+
   <div class='banner'>
     <div class= 'banner-search-box'> 
-      <form action="/search" class='search-box'>
-        <input type="search" name="" class="input-search" placeholder="faça uma busca por fundo de investimento">
-      <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
-    </form>    
+        <form type='post' action='/search'>
+          {{ csrf_field() }}
+        <select id='fund' name="fund" class='teste'>
+          <option value="" default >Escolha um fundo...</option>
+          @foreach($funds as $fund)
+        <option value={{$fund->ticker}}>{{$fund->name}} - {{$fund->ticker}} </option>
+          @endforeach
+        </select>
+            <button type="submit" class='btn btn-padrao' style='width:100%;'>Analisar fundos</button>
+          </form>
   </div>
-    <div class= 'banner-btn-analise'> 
-      <button class='btn btn-padrao'>Comparar fundos</button>
-    </div>
   </div>
 </main>
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
 <script>
+				$('#fund').selectize({
+					allowEmptyOption: true
+        });
 
+        
+				</script>
 
-
-</script>
