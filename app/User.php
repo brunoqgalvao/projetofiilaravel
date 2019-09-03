@@ -31,5 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\PostOwner');
     }
+    public function follows()
+    {
+        return $this->hasMany('App\Room','follows');
+    }
     
 }

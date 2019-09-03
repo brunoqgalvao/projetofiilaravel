@@ -32,6 +32,8 @@ class FundsTableSeeder extends Seeder
                     DB::table('funds')->insert([
                         'name' => $fund->name,
                         'ticker'=>$fund->ticker,
+                        'descricao'=>$fund->descricao,
+                        'infos'=>json_encode($fund),
                         'fund_avatar' => "",
                         'post_owner_id' => $owner->id
                     ]);

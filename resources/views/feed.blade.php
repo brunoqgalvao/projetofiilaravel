@@ -13,8 +13,8 @@ $user = Auth::user();
     @endif
   @endif  
   @include('feed.newPost')
-    <div id='post-container' style='min-height:300px;'>
-      <div class="infinite-scroll">
+  <div id='post-container' style='min-height:300px;'>
+    <div class="infinite-scroll">
       @include('feed.postSettings')
       @foreach($posts as $post)
         @include('feed.post', ['post' => $post])
@@ -24,5 +24,5 @@ $user = Auth::user();
       </div>
     </div>
   </div>
-    @include('feed.roomDisplay')
+  @include('feed.roomDisplay')
 @endsection

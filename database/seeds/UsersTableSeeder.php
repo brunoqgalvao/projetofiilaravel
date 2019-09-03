@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             $owner->room()->create(['name'=>$name]);
 
             DB::table('users')->insert([
-                'name' => $faker->name,
+                'name' => $name,
                 'email' => $faker->email,
                 'password' => "faker",
                 'user_avatar' => "/storage/img/". $faker->image('public/storage/img',300,300,'people', false),

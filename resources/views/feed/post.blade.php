@@ -27,6 +27,7 @@ $postId = $post->id;
         <h5 class="media-heading text-hover">{{$user->name}}</h5>
         <small class='text-sm-left'>{{$user->credentials}}</small>
         <span class="smaller light-grey">- {{$post->age }} atrás</span>
+        <span class='d-none smaller light-grey'>{{$post->relevance}}</span>
       </a>
     </div>
   </div>

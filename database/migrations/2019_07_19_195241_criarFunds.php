@@ -17,6 +17,8 @@ class CriarFunds extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('ticker');
+            $table->text('descricao',16383);
+            $table->text('infos',16383);
             $table->string('perfil',1000)->default("");
             $table->string('fund_avatar')->default("");
             $table->timestamps();
