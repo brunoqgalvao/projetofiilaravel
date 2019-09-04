@@ -6,6 +6,12 @@ $content = substr($content,1);
 $content = substr($content,0,-1);
 $content = str_replace('\\', "", $content);
 $user = $post->postOwner->user;
+$fund = $post->postOwner->fund;
+$avatar = isset($user)?$user->user_avatar: $fund->fund_avatar;
+$name = isset($user)?$user->name: $fund->name;
+if(isset($user) == false){
+  dd($post);
+}
 $postId = $post->id;
 ?>
 
@@ -15,15 +21,16 @@ $postId = $post->id;
     justify-content: center;
     margin-left: 10px;
 ">
-    <a href="/feed/{{$user->name}}" class=' align-self-center'>
-        <img class="rounded-circle"  src="{{$user->user_avatar}}" width="32" height="32" alt="...">
+    <a href="/feed/{{$name}}" class=' align-self-center'>
+        <img class="rounded-circle"  src="{{$avatar}}" width="32" height="32" alt="...">
       </a>
     </div>
     <div class="col-sm-8 mt-2">
-      <a href="/feed/{{$user->name}}" class="anchor-username">
-        <h5 class="media-heading text-hover">{{$user->name}}</h5>
-        <small class='text-sm-left'>{{$user->credentials}}</small>
+      <a href="/feed/{{$name}}" class="anchor-username">
+        <h5 class="media-heading text-hover">{{$name}}</h5>
+        {{-- <small class='text-sm-left'>{{$user->credentials}}</small> --}}
         <span class="smaller light-grey">- {{$post->age }} atrás</span>
+        <span class='d-none smaller light-grey'>{{$post->relevance}}</span>
       </a>
     </div>
   </div>
@@ -66,6 +73,7 @@ $postId = $post->id;
             </ul>
       </div>
     </div>
+    @if(Auth::check())
     <div class='row border-top pt-2'>
     <div class="col-12" id="formComments-{{$postId}}">
       <div class="form-group col-sm-12 justify-content d-flex ">
@@ -76,6 +84,7 @@ $postId = $post->id;
         </button>
       </div>
     </div>
+    @endif
   </div>
     <section class='row' id="postComments-{{$post->id}}">
     </section>

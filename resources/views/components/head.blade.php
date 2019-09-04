@@ -19,4 +19,4 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @include('components.loading')
   <title>{{config('app.name') }}</title>
-</head>
+</head> 

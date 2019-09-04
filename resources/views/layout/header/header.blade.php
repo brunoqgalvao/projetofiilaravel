@@ -7,7 +7,7 @@
    $loginOpen = isset($_GET['login'])? true:false;
    $registerOpen = isset($_GET['register'])? true:false;
  ?>
-<header>
+<header  style="position:fixed; z-index:900">
   <div class='logo-container'>
     <a href="/" class="logo-container-link"></a>
     <div class="logo-container-logo-bg"></div>
@@ -25,11 +25,13 @@
       ENTRAR
     </button>
 
-    @include('auth.modalCadastrar')
-    @include('auth.modalLogin')
 
   </div>
 </header>
+@include('auth.modalCadastrar')
+@include('auth.modalLogin')
+<div style="height:90px">
+</div>
 @else
 <header  style="position:fixed; z-index:900">
   <div class='logo-container'>

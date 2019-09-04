@@ -21,14 +21,15 @@ Route::get('/register', 'landingController@register')->name('register');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/search', 'feedController@unauthFund');
 
-Route::post('/post','PostController@createPost');
-Route::get('/analise', 'HomeController@analise');
-Route::get('/feed', 'feedController@getFeed');
+Route::middleware('auth')->post('/post','PostController@createPost');
+Route::middleware('auth')->get('/analise', 'HomeController@analise');
+Route::middleware('auth')->get('/feed', 'feedController@getFeed');
 Route::get('/feed/{roomId}', 'feedController@getFeedByRoom');
 
-Route::post('/comment/{postId}', 'CommentController@createComment');
-Route::get('/comment/{postId}', 'CommentController@getComments');
+Route::middleware('auth')->post('/comment/{postId}', 'CommentController@createComment');
+Route::middleware('auth')->get('/comment/{postId}', 'CommentController@getComments');
 
 Route::get('/user/all', 'UserController@allUsers');
 Route::get('/user/{id}', 'UserController@oneUser');

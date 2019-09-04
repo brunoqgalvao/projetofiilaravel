@@ -24,8 +24,11 @@ class Room extends Model
 
     public function getFollowedByAuthUserAttribute()
     {        
-        $followed = $this->follows->contains(Auth::user()->id);
-        if ($followed) return true;
-        return false;
+        if(Auth::check()){
+            $followed = $this->follows->contains(Auth::user()->id);
+            if ($followed) return true;
+            return false;
+        } else return false;
+
     }
 }

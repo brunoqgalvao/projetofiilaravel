@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class RoomController extends Controller
 {
     public function getAllRooms(Request $request) {
-        $user_id = Auth::id();
-        $rooms = Room::with(['follows' => function($q) use ($user_id) { return $q->where('user_id','=', $user_id); }])->get();
-        return response()->json($rooms,200);
+            $user_id = Auth::id();
+            $rooms = Room::with(['follows' => function($q) use ($user_id) { return $q->where('user_id','=', $user_id); }])->get();
+            return response()->json($rooms,200);
     }
 
     // Post::with(['like' => function ($like) use ($user_id) {

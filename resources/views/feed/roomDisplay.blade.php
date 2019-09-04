@@ -54,6 +54,7 @@
     list-style: none;
   }
 </style>
+@if(Auth::check())
 <div class="row d-none d-md-block ">
   <div class="mb-2 ml-2 fixed-scroll bg-white">
       <div class="p-1 bg-white">
@@ -68,6 +69,7 @@
       </div>
   </div>
 </div>
+@endif
 
 
 
@@ -104,7 +106,7 @@
     console.log(followButton(id));
       newItem.innerHTML = (`
     <div class="row justify-content-between mb-1">
-      <div class="col-8 align-self-center"
+      <div class="col-8 align-self-center">
       <a href="/feed/${name}">#${name}</a>
       </div>
       <div class="mr-3">`) 

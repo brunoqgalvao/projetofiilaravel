@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Fund;
 
 class landingController extends Controller
 {
@@ -14,15 +15,18 @@ class landingController extends Controller
         if(Auth::check()){
             return redirect('/feed');
         } else {
-            return view('landing.landing');
+            $funds = Fund::all();
+            return view('landing.landing', ['funds'=> $funds]);
         }
     }
     public function register()
     {
-        return view('/?register');
+        $funds = Fund::all();
+        return view('/?register', ['funds'=> $funds]);
     }
     public function login()
     {
-        return redirect('/?login');
+        $funds = Fund::all();
+        return redirect("/?login")->with(['funds'=>$funds]);
     }
 }
