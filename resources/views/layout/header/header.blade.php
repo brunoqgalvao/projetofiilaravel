@@ -30,6 +30,7 @@
 </header>
 @include('auth.modalCadastrar')
 @include('auth.modalLogin')
+@include('auth.modalAlert')
 <div style="height:90px">
 </div>
 @else

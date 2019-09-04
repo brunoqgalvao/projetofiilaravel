@@ -9,7 +9,6 @@
         <div class="text-center">
         <legend>CONTATE-NOS</legend>
         </div>
-        <form>
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Nome">
           </div>
@@ -25,10 +24,9 @@
                 <input type="checkbox" class="form-check-input" id="postarNome">
                 <label class="form-check-label" for="postarNome">Não postar meu nome</label>
               </div>
-                <button type="submit" class="btn btn-primary">Submit</button> 
+                <button class="btn btn-primary" onclick='modalAlertwithTitleAndText("PROJETO FII","Obrigado pelo contato!")'>Submit</button> 
             </div>
           </div>
-        </form>  
       </fieldset>
     </div>
   </div>

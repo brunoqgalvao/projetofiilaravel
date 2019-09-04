@@ -209,7 +209,9 @@ var toggleLikeComment = function (commentId) {
 
 
 <script>
-  @if(Auth::check()==false)
+  console.log('this is loading');
+  @if(!Auth::check())
+  console.log('this is loading')
   function postComment(postId) {
     askForLogin()
   }

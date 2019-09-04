@@ -82,7 +82,7 @@
         <option value={{$fund->ticker}}>{{$fund->name}} - {{$fund->ticker}} </option>
           @endforeach
         </select>
-            <button type="submit" class='btn btn-padrao' style='width:100%;'>Analisar fundos</button>
+            <button type="submit" class='btn btn-padrao' style='width:100%;'>Entrar </button>
           </form>
   </div>
   </div>
