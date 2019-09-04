@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   @include('components.head')
-<body>
+<body class="vh-100">
   @include('layout.header.header')
 
   @yield('content')
