@@ -61,6 +61,14 @@
         <div class="form-group mt-1" style="text-align: -webkit-center;">
           <input type='text' id='roomFilter' class="form-control" onkeyup="renderList()" placeholder="Search" style="width: 95%;">
         </div>
+        <div class="form-check form-check-inline" style="margin-left:3%">
+            <input class="form-check-input" type="checkbox" id="Seguindo" value="Seguindo">
+            <label class="form-check-label" for="Seguindo">Seguindo</label>
+        </div>
+        <div class="form-check form-check-inline" style="margin-left:3%">
+            <input class="form-check-input" type="checkbox" id="Recomendado" value="Recomendado">
+            <label class="form-check-label" for="Recomendado">Recomendado</label>
+        </div>
         <div class="style-scroll" id="suggested-rooms">
           <div class="m-2">
             <ul id='roomList'></ul>

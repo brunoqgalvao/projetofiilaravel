@@ -13,7 +13,7 @@ $user = Auth::user();
     @endif
   @endif  
   @include('feed.newPost')
-  <div id='post-container' style='min-height:300px;'>
+  <div id='post-container' style='min-height:65vh;'>
     <div class="infinite-scroll">
       @include('feed.postSettings')
       @foreach($posts as $post)
